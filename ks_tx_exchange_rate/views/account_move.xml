@@ -1,0 +1,17 @@
+<odoo>
+  <data>
+    <!-- Vista Heredada Account Move -->
+    <record id="account_move_form" model="ir.ui.view">
+         <field name="name">KS TX ER Move</field>
+         <field name="model">account.move</field>
+         <field name="inherit_id" ref="account.view_move_form"/>
+         <field name="arch" type="xml">
+           <field name="ref" position="after">
+             <field name="ks_tx_move_org_currency" readonly="1"/>
+             <field name="ks_tx_move_exchange_rate" readonly="1"/>
+             <field name="ks_tx_move_org_er" readonly="1" />
+           </field>
+         </field>
+    </record>
+  </data>
+</odoo>

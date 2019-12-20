@@ -1,0 +1,17 @@
+<odoo>
+  <data>
+    <!-- Vista Heredada Sales order -->
+    <record id="sale_view_order_form" model="ir.ui.view">
+         <field name="name">KS TX ER Quotation</field>
+         <field name="model">sale.order</field>
+         <field name="inherit_id" ref="sale.view_order_form"/>
+         <field name="arch" type="xml">
+             <field name="currency_id" position="after">
+                  <field name="ks_default_currency_id" invisible="1" />
+                  <field name="ks_so_exchange_rate_field" />
+                  <field name="ks_so_amount_total" widget="monetary" options="{'currency_field': 'company_currency_id'}" />
+             </field>
+         </field>
+    </record>
+  </data>
+</odoo>
