@@ -19,7 +19,7 @@
          <field name="inherit_id" ref="account.invoice_supplier_form"/>
          <field name="arch" type="xml">
            <field name="currency_id" position="after">
-             <field name="ks_tx_exchange_rate" attrs="{'readonly': ['|',('state','not in',('draft',)), ('type','!=','out_invoice')]}" />
+             <field name="ks_tx_exchange_rate" attrs="{'readonly': ['|',('state','not in',('draft',))]}" />
              <field name="ks_tx_org_er" readonly="1" />
            </field>
          </field>
