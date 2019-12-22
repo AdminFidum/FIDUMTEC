@@ -30,7 +30,7 @@ class ks_tx_inv_exchange_rate(models.Model):
 	@api.onchange('ks_tx_exchange_rate') # if these fields are changed, call method
 	def ks_tx_change_exchangerate(self):
 		ks_exchangerate = self.ks_tx_exchange_rate
-		self['ks_tx_inv_org_er'] = 1/ks_exchangerate
+		self['ks_tx_org_er'] = 1/ks_exchangerate
 
 	@api.model
 	def ks_tx_get_rates(self,date,company,from_currency,to_currency):
