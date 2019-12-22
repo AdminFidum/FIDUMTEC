@@ -13,7 +13,6 @@ _logger = logging.getLogger(__name__)
 class ks_tx_payment_exchange_rate(models.Model):
 	_inherit = 'account.payment'
 	ks_tx_exchange_rate = fields.Float(string='Exchange Rate',digits=(12,2))
-	ks_tx_org_er = fields.Float(string='Odoo Exchange Rate',digits=(12,20))
 
 	@api.onchange('payment_date','currency_id') # if these fields are changed, call method
 	def ks_tx_change_date_currency(self):
@@ -24,9 +23,3 @@ class ks_tx_payment_exchange_rate(models.Model):
 		ks_er_date = self.payment_date or fields.Date.today()
 		ks_tx = self.env['account.invoice'].ks_tx_inv_exchange_rate.ks_tx_get_rates(self,ks_er_date,ks_company,ks_from_currency,ks_to_currency)
 		self['ks_tx_exchange_rate'] = ks_tx['ks_er']
-		self['ks_tx_org_er'] = ks_tx['ks_er_normal']
-
-	@api.onchange('ks_tx_exchange_rate') # if these fields are changed, call method
-	def ks_tx_change_exchangerate(self):
-		ks_exchangerate = self.ks_tx_exchange_rate
-		self['ks_tx_org_er'] = 1/ks_exchangerate
