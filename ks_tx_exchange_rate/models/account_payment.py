@@ -12,7 +12,7 @@ _logger = logging.getLogger(__name__)
 ##
 class ks_tx_payment_exchange_rate(models.Model):
 	_inherit = 'account.payment'
-	ks_tx_exchange_rate = fields.Float(string='Exchange Rate',digits=(12,2))
+	ks_tx_exchange_rate = fields.Float(string='Exchange Rate')
 	local_currency_price = fields.Monetary(readonly=1)
 
 	@api.onchange('amount','payment_date','currency_id') # if these fields are changed, call method
