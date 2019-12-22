@@ -8,8 +8,8 @@
          <field name="arch" type="xml">
            <xpath expr="//form/sheet/group[1]/group[2]" position="after">
              <group>
-                <field name="ks_tx_payment_exchange_rate" />
-                <field name="ks_tx_payment_org_er" readonly="1" />
+                <field name="ks_tx_exchange_rate" />
+                <field name="ks_tx_org_er" readonly="1" />
             </group>
            </xpath>
          </field>
@@ -22,8 +22,8 @@
          <field name="arch" type="xml">
            <xpath expr="//form/sheet/group[1]" position="inside">
              <group>
-                <field name="ks_tx_payment_exchange_rate" />
-                <field name="ks_tx_payment_org_er" readonly="1" />
+                <field name="ks_tx_exchange_rate" />
+                <field name="ks_tx_org_er" readonly="1" />
             </group>
            </xpath>
          </field>
