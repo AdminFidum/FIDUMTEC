@@ -17,7 +17,6 @@ class ks_tx_res_currency(models.Model):
         key = self.env.context.get('currency_id')
         _logger.info('WATARU ks_echangerate %s key %s',ks_echangerate,key)
         if ks_echangerate and key:
-
             currency_rates[key] = 1.0 / ks_echangerate
 
         return currency_rates
