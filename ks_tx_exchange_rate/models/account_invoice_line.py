@@ -15,5 +15,5 @@ class ks_tx_account_invoice(models.Model):
     @api.onchange('ks_tx_exchange_rate', 'price_unit', 'quantity')
     def account_invoice_line(self):
         if self.invoice_id.ks_tx_exchange_rate:
-            _logger('WATARU ks_tx_echnagerate %s',self.invoice_id.ks_tx_echnagerate)
+            _logger('WATARU ks_tx_exchange_rate %s',self.invoice_id.ks_tx_exchange_rate)
             self.local_currency_price = self.quantity * self.price_unit * self.invoice_id.ks_tx_exchange_rate
