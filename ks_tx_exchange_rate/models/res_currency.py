@@ -8,15 +8,18 @@ import logging
 _logger = logging.getLogger(__name__)
 
 
-class ks_tx_res_currency(models.Model):
+class ResCurrency(models.Model):
     _inherit = 'res.currency'
 
     def _get_rates(self, company, date):
-        currency_rates = super(ks_tx_res_currency, self)._get_rates(company, date)
-        ks_echangerate = self.env.context.get('value_ks_tx_exchange_rate')
-        currency_key = self.env.context.get('currency_id')
-        _logger.info('WATARU currency ks_echangerate %s currency_key %s context %s',ks_echangerate,currency_key,self.env.context)
-        if ks_echangerate and currency_key:
-            currency_rates[currency_key] = 1.0 / ks_echangerate
+        currency_rates = super(ResCurrency, self)._get_rates(company, date)
+
+        _logger.info('WATARU currency rate %s currency_id %s',self.env.context.get('value_ks_tx_exchange_rate'),self.env.context.get('currency_id'))
+
+        if self.env.context.get('value_ks_tx_exchange_rate') and \
+           self.env.context.get('currency_id'):
+
+            key = self.env.context.get('currency_id')
+            currency_rates[key] = 1.0 / self.env.context.get('value_ks_tx_exchange_rate')
 
         return currency_rates
