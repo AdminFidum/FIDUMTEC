@@ -16,7 +16,7 @@ class ks_tx_payment_exchange_rate(models.Model):
 	ks_tx_local_currency_price = fields.Monetary(readonly=1)
 
 	@api.onchange('amount','payment_date','currency_id') # if these fields are changed, call method
-	def ks_tx_change_date_currency(self):
+	def ks_tx_change_amount_date_currency(self):
 		ks_company = self.env['res.company']._company_default_get('account.payment')
 		ks_company_currency = ks_company.currency_id
 		ks_from_currency = ks_company_currency
@@ -26,5 +26,5 @@ class ks_tx_payment_exchange_rate(models.Model):
 		self['ks_tx_exchange_rate'] = ks_tx['ks_er']
 	
 	@api.onchange('ks_tx_exchange_rate') # if these fields are changed, call method
-	def ks_tx_change_date_currency(self):
+	def ks_tx_change_exchangerate(self):
 		self.ks_tx_local_currency_price = self.ks_tx_exchange_rate * self.amount
