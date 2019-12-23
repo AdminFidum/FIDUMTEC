@@ -9,6 +9,9 @@
            <xpath expr="//form/sheet/group[1]/group[2]" position="inside">
              <field name="ks_tx_exchange_rate" attrs="{'readonly': ['|',('state','not in',('draft',)), ('type','!=','out_invoice')]}" />
            </xpath>
+           <xpath expr="//field[@name='price_unit']" position="after">
+                <field name="ks_tx_local_currency_price"/>
+            </xpath>
          </field>
     </record>
     <!-- Vista Heredada Account Inovice -->
@@ -20,6 +23,9 @@
            <field name="currency_id" position="after">
              <field name="ks_tx_exchange_rate" attrs="{'readonly': ['|',('state','not in',('draft',))]}" />
            </field>
+           <xpath expr="//field[@name='price_unit']" position="after">
+                <field name="ks_tx_local_currency_price"/>
+            </xpath>
          </field>
     </record>
   </data>

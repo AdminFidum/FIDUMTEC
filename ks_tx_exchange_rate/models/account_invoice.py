@@ -17,7 +17,7 @@ class ks_tx_inv_exchange_rate(models.Model):
 
 	@api.onchange('date_invoice','currency_id') # if these fields are changed, call method
 	def ks_tx_change_date_currency(self):
-		ks_company = self.env['res.company']._company_default_get('sale.order')
+		ks_company = self.env['res.company']._company_default_get('account.invoice')
 		ks_company_currency = ks_company.currency_id
 		ks_from_currency = ks_company_currency
 		ks_to_currency = self.currency_id
@@ -31,6 +31,7 @@ class ks_tx_inv_exchange_rate(models.Model):
 	@api.onchange('ks_tx_exchange_rate') # if these fields are changed, call method
 	def ks_tx_change_echangerate(self):
 		for data in self.invoice_line_ids:
+			_logger.info('WATARU set n lines ks_tx_exchange_rate %s ',self.ks_tx_exchange_rate)
 			data.local_currency_price = data.quantity * data.price_unit * self.ks_tx_exchange_rate
 
 	@api.model
