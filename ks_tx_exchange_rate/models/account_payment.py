@@ -22,6 +22,6 @@ class ks_tx_payment_exchange_rate(models.Model):
 		ks_from_currency = ks_company_currency
 		ks_to_currency = self.currency_id
 		ks_er_date = self.payment_date or fields.Date.today()
-		ks_tx = self.env['account.invoice'].ks_tx_get_rates(self,ks_er_date,ks_company,ks_from_currency,ks_to_currency)
+		ks_tx = self.env['account.invoice'].ks_tx_get_rates(ks_er_date,ks_company,ks_from_currency,ks_to_currency)
 		self['ks_tx_exchange_rate'] = ks_tx['ks_er']
 		self.ks_tx_local_currency_price = self.ks_tx_exchange_rate * self.amount
