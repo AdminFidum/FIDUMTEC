@@ -9,8 +9,14 @@
            <xpath expr="//form/sheet/group[1]/group[2]" position="after">
              <group>
                 <field name="ks_tx_exchange_rate" />
+                <field name="ks_tx_local_currency_price"/>
             </group>
            </xpath>
+           <xpath expr="//button[@name='action_validate_invoice_payment']" position="attributes">
+                <attribute name="context">
+                    {'ks_tx_exchange_rate': ks_tx_exchange_rate, 'currency_id' : currency_id }
+                </attribute>
+            </xpath>
          </field>
     </record>
     <!-- Vista Heredada Account Payment -->
@@ -22,8 +28,14 @@
            <xpath expr="//form/sheet/group[1]" position="inside">
              <group>
                 <field name="ks_tx_exchange_rate" />
+                <field name="ks_tx_local_currency_price"/>
             </group>
            </xpath>
+           <xpath expr="//button[@name='action_validate_invoice_payment']" position="attributes">
+                <attribute name="context">
+                    {'ks_tx_exchange_rate': ks_tx_exchange_rate, 'currency_id' : currency_id }
+                </attribute>
+            </xpath>
          </field>
     </record>
   </data>
