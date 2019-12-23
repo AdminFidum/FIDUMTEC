@@ -14,6 +14,8 @@ class ResCurrency(models.Model):
     def _get_rates(self, company, date):
         currency_rates = super(ResCurrency, self)._get_rates(company, date)
 
+        _logger.info('WATARU currency check %s rate %s currency_id %s',self.env.context.get('value_check_rate'),self.env.context.get('value_rate_exchange'),self.env.context.get('currency_id'))
+
         if self.env.context.get('value_check_rate') and \
            self.env.context.get('value_rate_exchange') and \
            self.env.context.get('currency_id'):
