@@ -27,13 +27,13 @@ class ks_tx_inv_exchange_rate(models.Model):
 		self['ks_tx_exchange_rate'] = ks_tx['ks_er']
 
 		for data in self.invoice_line_ids:
-			data.local_currency_price = data.quantity * data.price_unit * self.ks_tx_exchange_rate
+			data.ks_tx_local_currency_price = data.quantity * data.price_unit * self.ks_tx_exchange_rate
 
 	@api.onchange('ks_tx_exchange_rate') # if these fields are changed, call method
 	def ks_tx_change_echangerate(self):
 		for data in self.invoice_line_ids:
 			_logger.info('WATARU set n lines ks_tx_exchange_rate %s ',self.ks_tx_exchange_rate)
-			data.local_currency_price = data.quantity * data.price_unit * self.ks_tx_exchange_rate
+			data.ks_tx_local_currency_price = data.quantity * data.price_unit * self.ks_tx_exchange_rate
 
 	@api.model
 	def ks_tx_get_rates(self,date,company,from_currency,to_currency):
