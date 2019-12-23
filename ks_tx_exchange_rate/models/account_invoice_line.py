@@ -8,7 +8,7 @@ _logger = logging.getLogger(__name__)
 class ks_tx_account_invoice(models.Model):
     _inherit = 'account.invoice.line'
 
-    ks_tx_local_currency_price = fields.Float()
+    ks_tx_local_currency_price = fields.Float(label='Local Price')
     ks_tx_exchange_rate = fields.Float(related='invoice_id.ks_tx_exchange_rate')
     currency_id = fields.Many2one('res.currency', related='invoice_id.currency_id')
 
