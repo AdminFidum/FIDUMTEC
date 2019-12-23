@@ -31,7 +31,7 @@
                 <field name="ks_tx_local_currency_price"/>
             </group>
            </xpath>
-           <xpath expr="//button[@name='action_validate_invoice_payment']" position="attributes">
+           <xpath expr="//button[@name='post']" position="attributes">
                 <attribute name="context">
                     {'ks_tx_exchange_rate': ks_tx_exchange_rate, 'currency_id' : currency_id }
                 </attribute>
