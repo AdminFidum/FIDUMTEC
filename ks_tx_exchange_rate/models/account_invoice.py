@@ -23,7 +23,6 @@ class ks_tx_inv_exchange_rate(models.Model):
 		ks_to_currency = self.currency_id
 		ks_er_date = self.date_invoice or fields.Date.today()
 		ks_tx = ks_tx_inv_exchange_rate.ks_tx_get_rates(self,ks_er_date,ks_company,ks_from_currency,ks_to_currency)
-		_logger.info('WATARU currency ks_tx %s ks_from_currency %s ks_to_currency %s',ks_tx,ks_from_currency,ks_to_currency)
 		self['ks_tx_exchange_rate'] = ks_tx['ks_er']
 
 		for data in self.invoice_line_ids:
