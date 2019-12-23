@@ -16,6 +16,4 @@ class ks_tx_account_invoice(models.Model):
     def account_invoice_line(self):
         if self.invoice_id.ks_tx_exchange_rate:
             _logger.info('WATARU line ks_tx_exchange_rate %s currency_id %s',self.ks_tx_exchange_rate,self.currency_id)
-            self.currency_id = self.invoice_id.currency_id
-            self.ks_tx_exchange_rate = self.invoice_id.ks_tx_exchange_rate
             self.ks_tx_local_currency_price = self.quantity * self.price_unit * self.invoice_id.ks_tx_exchange_rate
