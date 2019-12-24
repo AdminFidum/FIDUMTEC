@@ -7,9 +7,16 @@
          <field name="inherit_id" ref="account.invoice_form"/>
          <field name="arch" type="xml">
            <xpath expr="//form/sheet/group[1]/group[2]" position="inside">
-             <field name="ks_tx_inv_exchange_rate" attrs="{'readonly': ['|',('state','not in',('draft',)), ('type','!=','out_invoice')]}" />
-             <field name="ks_tx_inv_org_er" readonly="1" />
+             <field name="ks_tx_exchange_rate" />
            </xpath>
+           <xpath expr="//button[@name='action_invoice_open']" position="attributes">
+                <attribute name="context">
+                    {'ks_tx_exchange_rate': ks_tx_exchange_rate, 'currency_id' : currency_id }
+                </attribute>
+            </xpath>
+           <xpath expr="//field[@name='price_unit']" position="after">
+                <field name="ks_tx_local_currency_price"/>
+            </xpath>
          </field>
     </record>
     <!-- Vista Heredada Account Inovice -->
@@ -19,9 +26,16 @@
          <field name="inherit_id" ref="account.invoice_supplier_form"/>
          <field name="arch" type="xml">
            <field name="currency_id" position="after">
-             <field name="ks_tx_inv_exchange_rate" attrs="{'readonly': ['|',('state','not in',('draft',)), ('type','!=','out_invoice')]}" />
-             <field name="ks_tx_inv_org_er" readonly="1" />
+             <field name="ks_tx_exchange_rate" />
            </field>
+           <xpath expr="//button[@name='action_invoice_open']" position="attributes">
+                <attribute name="context">
+                    {'ks_tx_exchange_rate': ks_tx_exchange_rate, 'currency_id' : currency_id }
+                </attribute>
+            </xpath>
+           <xpath expr="//field[@name='price_unit']" position="after">
+                <field name="ks_tx_local_currency_price"/>
+            </xpath>
          </field>
     </record>
   </data>

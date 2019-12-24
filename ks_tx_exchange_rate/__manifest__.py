@@ -3,7 +3,7 @@
     'name': "ks_tx_exchange_rate",
 
     'summary': """
-        Tipo de Cambio en el CRM """,
+        Tipo de Cambio en el Todas las Transacciones Contables """,
 
     'description': """
         Se habilita la multimoneda en las oportunidades, presupuesto y ordenes de venta. Adicional se visualiza la tasa de cambio de en la invoice y la entrada de diario asociada
@@ -19,12 +19,15 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['crm','sale_management'],
+    'depends': ['base','crm','sale_management','sales_team', 'payment', 'portal'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
         'views/crm_lead.xml',
+        'views/sale_order.xml',
+        'views/account_invoice.xml',
+        'views/account_payment_invoice.xml',
     ],
     # only loaded in demonstration mode
     'demo': [],
