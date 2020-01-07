@@ -11,8 +11,13 @@ _logger = logging.getLogger(__name__)
 # Clase que hereda crm lead.
 ##
 
-# class ks_tx_so_exchange_rate(models.Model):
-# 	_inherit = 'sale.order'
+class ks_co_create_saleorder(models.Model):
+	_inherit = 'sale.order'
+
+    @api.model
+    def create(self, vals):
+        record =  super(ks_create_saleorder, self).create(vals)
+        return record
 # 	ks_so_exchange_rate_field = fields.Float(string='KS Exchange Rate',digits=(12,2))
 # 	ks_so_amount_total = fields.Float(string="KS Dolar Amount",digits=(12,2))
 # 	ks_default_currency_id = fields.Many2one('res.currency',string="KS Moneda por defecto")
