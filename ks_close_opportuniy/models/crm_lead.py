@@ -14,7 +14,6 @@ _logger = logging.getLogger(__name__)
 
 class ks_co_create_crmLead(models.Model):
 	_inherit = 'crm.lead'
-
     @api.model
     def create(self, vals):
         _logger.info('kstest1 ks_er')
