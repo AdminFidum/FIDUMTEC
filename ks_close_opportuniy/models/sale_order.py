@@ -14,8 +14,8 @@ _logger = logging.getLogger(__name__)
 class ks_co_create_saleorder(models.Model):
 	_inherit = "sale.order"
     @api.model
+    _logger.info('kstest1 ks_co')
     def create(self, vals):
-        _logger.info('kstest1 ks_co')
         record =  super(ks_co_create_saleorder, self).create(vals)
         return record
 # 	ks_so_exchange_rate_field = fields.Float(string='KS Exchange Rate',digits=(12,2))
