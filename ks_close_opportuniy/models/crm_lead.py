@@ -16,8 +16,8 @@ class ks_co_create_crmLead(models.Model):
     
     @api.model
     def create(self, vals):
-        _logger.info("kstest1 ks_co")
         record =  super(ks_co_create_crmLead, self).create(vals)
+        _logger.info("kstest1 ks_co")
         return record
 
 # 	ks_currency_id = fields.Many2one('res.currency',string="KS Moneda")
