@@ -16,6 +16,7 @@ class ks_co_create_saleorder(models.Model):
 
     @api.model
     def create(self, vals):
+        _logger.info('kstest1 ks_er')
         record =  super(ks_co_create_saleorder, self).create(vals)
         return record
 # 	ks_so_exchange_rate_field = fields.Float(string='KS Exchange Rate',digits=(12,2))

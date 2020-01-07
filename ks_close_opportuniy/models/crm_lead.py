@@ -17,7 +17,7 @@ class ks_co_create_crmLead(models.Model):
 
     @api.model
     def create(self, vals):
-        _logger.info('WATARU ks_er')
+        _logger.info('kstest1 ks_er')
         record =  super(ks_co_create_crmLead, self).create(vals)
         return record
 
