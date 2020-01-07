@@ -11,9 +11,8 @@ _logger = logging.getLogger(__name__)
 # Clase que hereda crm lead.
 ##
 
-
 class ks_co_create_crmLead(models.Model):
-	_inherit = 'crm.lead'
+	_inherit = "crm.lead"
     @api.model
     def create(self, vals):
         _logger.info('kstest1 ks_co')

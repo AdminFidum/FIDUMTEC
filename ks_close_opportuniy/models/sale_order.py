@@ -12,7 +12,7 @@ _logger = logging.getLogger(__name__)
 ##
 
 class ks_co_create_saleorder(models.Model):
-	_inherit = 'sale.order'
+	_inherit = "sale.order"
     @api.model
     def create(self, vals):
         _logger.info('kstest1 ks_co')
