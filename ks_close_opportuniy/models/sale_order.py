@@ -45,7 +45,7 @@ class ks_co_create_saleorder(models.Model):
 # 			if ks_company_currency==ks_from_currency:
 # 				ks_er = 1/ks_to_currency_rate
 
-# 		_logger.info('WATARU ks_er %s ',ks_er)
+ 		_logger.info('KSORDERSALE ks_er %s ',ks_er)
 # 		self['ks_so_exchange_rate_field'] = ks_er
 
 # 	@api.onchange('amount_total','ks_so_exchange_rate_field') # if these fields are changed, call method
