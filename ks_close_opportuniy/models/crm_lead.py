@@ -11,8 +11,16 @@ _logger = logging.getLogger(__name__)
 # Clase que hereda crm lead.
 ##
 
-# class ks_tx_exchange_rate(models.Model):
-# 	_inherit = 'crm.lead'
+
+class ks_co_create_crmLead(models.Model):
+	_inherit = 'crm.lead'
+
+    @api.model
+    def create(self, vals):
+        _logger.info('WATARU ks_er')
+        record =  super(ks_co_create_crmLead, self).create(vals)
+        return record
+
 # 	ks_currency_id = fields.Many2one('res.currency',string="KS Moneda")
 # 	ks_exchange_rate_field = fields.Float(string='KS Exchange Rate',digits=(12,2))
 # 	ks_planned_revenue = fields.Float(string="KS Dolar Amount",digits=(12,2))
