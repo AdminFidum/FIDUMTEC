@@ -18,7 +18,7 @@ class ks_co_create_saleorder(models.Model):
     def create(self, vals):
         record =  super(ks_co_create_saleorder, self).create(vals)
         _logger.info("kstest1 ks_co")
-        return record
+    return record
 # 	ks_so_exchange_rate_field = fields.Float(string='KS Exchange Rate',digits=(12,2))
 # 	ks_so_amount_total = fields.Float(string="KS Dolar Amount",digits=(12,2))
 # 	ks_default_currency_id = fields.Many2one('res.currency',string="KS Moneda por defecto")
