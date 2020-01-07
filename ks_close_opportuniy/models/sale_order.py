@@ -17,5 +17,5 @@ class ks_co_create_saleorder(models.Model):
     @api.model_create_multi
     def create(self, vals):
         record = super(ks_co_create_saleorder, self).create(vals)
-        _logger.debug('TESTKSCO01')
+        _logger.info('TESTKSCO01')
         return record
