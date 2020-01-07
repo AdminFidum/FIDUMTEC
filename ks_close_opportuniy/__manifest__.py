@@ -2,11 +2,11 @@
 {
     'name': "ks_close_opportunity",
 
-    'summary': """
+    'summary': """ Testing
          """,
 
     'description': """
-        
+        Testing dos
     """,
 
     'author': "Keep It Simple",

@@ -8,12 +8,12 @@ import re
 _logger = logging.getLogger(__name__)
 
 ##
-# Clase que hereda crm lead.
+# Clase que hereda sales order.
 ##
 
 class ks_co_create_saleorder(models.Model):
     _inherit = "sale.order"
-    
+
     @api.model_create_multi
     def create(self, vals):
         record = super(ks_co_create_saleorder, self).create(vals)
