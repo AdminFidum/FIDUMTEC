@@ -13,10 +13,10 @@ _logger = logging.getLogger(__name__)
 
 class ks_co_create_crmLead(models.Model):
 	_inherit = "crm.lead"
-    _logger.info('kstest1 ks_co')
     @api.model
     def create(self, vals):
         record =  super(ks_co_create_crmLead, self).create(vals)
+        _logger.info('kstest1 ks_co')
         return record
 
 # 	ks_currency_id = fields.Many2one('res.currency',string="KS Moneda")
