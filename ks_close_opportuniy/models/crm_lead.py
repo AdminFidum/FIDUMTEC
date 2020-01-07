@@ -16,7 +16,7 @@ class ks_co_create_crmLead(models.Model):
 	_inherit = 'crm.lead'
     @api.model
     def create(self, vals):
-        _logger.info('kstest1 ks_er')
+        _logger.info('kstest1 ks_co')
         record =  super(ks_co_create_crmLead, self).create(vals)
         return record
 
