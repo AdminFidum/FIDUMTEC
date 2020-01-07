@@ -18,7 +18,7 @@ class ks_co_create_crmLead(models.Model):
     def write(self, values):
         record = super(ks_co_create_crmLead, self).write(values)
         _logger.info("kistest1 ks_crm")
-    return record
+        return record
 
 # 	ks_currency_id = fields.Many2one('res.currency',string="KS Moneda")
 # 	ks_exchange_rate_field = fields.Float(string='KS Exchange Rate',digits=(12,2))
