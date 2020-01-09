@@ -27,7 +27,7 @@
 
     # any module necessary for this one to work correctly
     'depends': [
-        'accounting'
+        'account_accountant'
     ],
     "demo":[],
     "installable":True
