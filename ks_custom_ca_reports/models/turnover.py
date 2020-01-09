@@ -94,6 +94,7 @@ class ReportTurnoverCountry(models.AbstractModel):
                 'columns': [{'name': total}]
                 })
 
+                _logger.info('KS_TURNOVER')
         return lines
 
     def get_report_name(self):
