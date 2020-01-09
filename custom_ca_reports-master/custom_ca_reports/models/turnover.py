@@ -93,6 +93,7 @@ class ReportTurnoverCountry(models.AbstractModel):
                 'class': 'total',
                 'columns': [{'name': total}]
                 })
+
         return lines
 
     def get_report_name(self):
