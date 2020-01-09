@@ -14,11 +14,11 @@
             </xpath>-->
         </template>
         <template id="template_turnover_report" inherit_id="account_reports.main_template" primary="True">
-            <!--<xpath expr="//tbody" position="replace">
+            <xpath expr="//tbody" position="replace">
                 <t t-if="lines.get('lines')">
                     <t t-call="custom_ca_reports.line_template_turnover_report" />
                 </t>
-            </xpath>-->
+            </xpath>
         </template>
 
     </data>
