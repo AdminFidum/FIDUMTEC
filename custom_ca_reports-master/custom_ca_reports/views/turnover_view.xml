@@ -4,7 +4,7 @@
         <record id="action_account_report_turnover" model="ir.actions.client">
             <field name="name">Turnover by country</field>
             <field name="tag">account_report</field>
-            <field name="context" eval="{'model': 'account_report_turnover_country'}" />
+            <field name="context" eval="{'model': 'account.report.turnover.country'}" />
         </record>
         <menuitem id="menu_action_account_report_turnover" name="Turnover by country" action="action_account_report_turnover" parent="account_reports.account_reports_audit_reports_menu" groups="account.group_account_user"/>
 
