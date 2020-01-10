@@ -95,8 +95,7 @@ class ReportTurnoverCountry(models.AbstractModel):
 
         return lines
 
-    def get_report_name(self):
-        return _('Turnover by country/partner')
+    
 
    # def get_templates(self):
     #    templates = super(ReportTurnoverCountry, self).get_templates()
@@ -114,4 +113,7 @@ class ReportTurnoverCountry(models.AbstractModel):
             ('date', '>=', options.get('date').get('date_from'))
         ]
         action = clean_action(action)
-        return action-->
+        return action
+
+        def get_report_name(self):
+        return _('Turnover by country/partner')
