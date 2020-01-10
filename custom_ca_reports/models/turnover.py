@@ -115,5 +115,5 @@ class ReportTurnoverCountry(models.AbstractModel):
         action = clean_action(action)
         return action
 
-        def get_report_name(self):
+    def get_report_name(self):
         return _('Turnover by country/partner')
