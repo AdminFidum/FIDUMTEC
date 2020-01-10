@@ -5,7 +5,6 @@ import time
 from odoo import api, models, _
 from odoo.tools.misc import formatLang
 from odoo.exceptions import UserError
-from odoo.addons.web.controllers.main import clean_action
 
 
 class ReportTurnoverCountry(models.AbstractModel):
