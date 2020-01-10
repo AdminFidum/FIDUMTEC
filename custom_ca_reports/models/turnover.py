@@ -11,7 +11,7 @@ from odoo.addons.web.controllers.main import clean_action
 class ReportTurnoverCountry(models.AbstractModel):
     _name = "account.report.turnover.country"
     _description = "Turnover by country/partner"
-    _inherit = 'account.report_invoice'
+    _inherit = 'account.report'
 
     filter_date = {'date_from': '', 'date_to': '', 'filter': 'this_month'}
     filter_all_entries = False
