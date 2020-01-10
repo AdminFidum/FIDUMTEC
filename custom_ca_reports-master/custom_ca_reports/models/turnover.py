@@ -9,7 +9,7 @@ from odoo.addons.web.controllers.main import clean_action
 
 
 class ReportTurnoverCountry(models.AbstractModel):
-    _name = "account.report.turnover.country"
+    _name = "account_report_turnover_country"
     _description = "Turnover by country/partner"
     _inherit = 'account.report'
 
