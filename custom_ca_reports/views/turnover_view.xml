@@ -22,7 +22,5 @@
                 <li t-if="line['caret_options'] == 'invoice'" role="presentation" groups="account.group_account_user">
             </xpath>
         </template>
-
-        
     </data>
 </odoo>
