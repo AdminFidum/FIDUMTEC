@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <record id="action_account_report_turnover" model="ir.actions.client">
+       <!-- <record id="action_account_report_turnover" model="ir.actions.client">
             <field name="name">Turnover by country</field>
             <field name="tag">account_report</field>
             <field name="context" eval="{'model': 'account.report.turnover.country'}" />
@@ -17,7 +17,7 @@
             </xpath>
         </template>
         
-       <!-- <template id="line_template_turnover_report" inherit_id="account_reports.line_template" primary="True">
+        <template id="line_template_turnover_report" inherit_id="account_reports.line_template" primary="True">
             <xpath expr="//ul[hasclass('o_account_reports_domain_dropdown')]/li[last()]" position="before">
                 <li t-if="line['caret_options'] == 'invoice'" role="presentation" groups="account.group_account_user">
             </xpath>
