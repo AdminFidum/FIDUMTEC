@@ -11,10 +11,10 @@ class ReportTurnoverCountry(models.AbstractModel):
     _name = "account.report.turnover.country"
     _description = "Turnover by country/partner"
     _inherit = 'account.report'
-'''
+
     filter_date = {'date_from': '', 'date_to': '', 'filter': 'last_month'}
     filter_all_entries = False
-'''
+
     def get_columns_name(self, options):
         return [{'name': _('Country')}, {'name': _('Turnover'), 'class': 'number'}]
 
