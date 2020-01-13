@@ -9,7 +9,7 @@
         A custom report to get turnover by country/partner
     """,
     'depends': [
-        'account_reports'
+        'account_reports', 'account_accountant'
     ],
     'data': [
         'views/turnover_view.xml',
