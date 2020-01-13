@@ -6,13 +6,13 @@
             <field name="tag">account_report</field>
             <field name="context" eval="{'model': 'account.report.turnover.country'}" />
         </record>
-        <!--<menuitem v id="menu_action_account_report_turnover" name="Turnover by country" action="action_account_report_turnover" parent="account_reports.account_reports_audit_reports_menu" groups="account.group_account_user"/>-->
+        <menuitem v id="menu_action_account_report_turnover" name="Turnover by country" action="action_account_report_turnover" parent="account_reports.account_reports_audit_reports_menu" groups="account.group_account_user"/>
 
 
 
         <template id="line_template_turnover_report" inherit_id="account_reports.line_template" primary="True">
             <xpath expr="//div[hasclass('o_account_reports_domain_dropdown')]/*[last()]" position="before">
-                <li t-if="line['caret_options'] == 'invoice'" role="presentation" groups="account.group_account_user"><a role="menuitem" tabindex="-1" t-att-data-id="line['id']" action="open_invoices">View Invoices</a></li>
+                <li t-if="line['caret_options'] == 'invoices'" role="presentation" groups="account.group_account_user"><a role="menuitem" tabindex="-1" t-att-data-id="line['id']" action="open_invoices">View Invoices</a></li>
             </xpath>
         </template>
         <template id="template_turnover_report" inherit_id="account_reports.main_template" primary="True">
