@@ -18,9 +18,13 @@
         </template>
         
         <template id="line_template_turnover_report" inherit_id="account_reports.line_template" primary="True">
-            <xpath expr="//ul[hasclass('o_account_reports_domain_dropdown')]/li[last()]" position="before">
+            <!--<xpath expr="//ul[hasclass('o_account_reports_domain_dropdown')]/li[last()]" position="before">
                 <li t-if="line['caret_options'] == 'invoice'" role="presentation" groups="account.group_account_user"/>
-            </xpath>
+            </xpath>-->
+            <xpath expr="//div[hasclass('o_account_reports_domain_dropdown')]/*[last()]" position="before">
+        <t t-if="line['caret_options'] == 'invoice'" groups="account.group_account_user"><a role="menuitem" tabindex="-1" t-att-data-id="line['id']" action="open_document" class="dropdown-item">View Journal Entry</a></t>
+    </xpath>
+
         </template>
     </data>
 </odoo>
