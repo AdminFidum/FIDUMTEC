@@ -5,6 +5,7 @@ import time
 from odoo import api, models, _
 from odoo.tools.misc import formatLang
 from odoo.exceptions import UserError
+from odoo.addons.web.controllers.main import clean_action
 
 
 class ReportTurnoverCountry(models.AbstractModel):
@@ -95,6 +96,9 @@ class ReportTurnoverCountry(models.AbstractModel):
 
         return lines
 
+    def get_report_name(self):
+        return _('Turnover by country/partner')
+
     def get_templates(self):
         templates = super(ReportTurnoverCountry, self).get_templates()
         templates['main_template'] = 'custom_ca_reports.template_turnover_report'
@@ -112,6 +116,3 @@ class ReportTurnoverCountry(models.AbstractModel):
         ]
         action = clean_action(action)
         return action
-
-    def get_report_name(self):
-        return _('Turnover by country/partner')
