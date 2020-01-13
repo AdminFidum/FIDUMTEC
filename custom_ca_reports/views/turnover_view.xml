@@ -8,11 +8,6 @@
         </record>
         
         <menuitem id="menu_action_account_report_turnover" name="Turnover by country" action="action_account_report_turnover" parent="account_reports.account_reports_audit_reports_menu" groups="account.group_account_user"/>
-        <template id="line_template_turnover_report" inherit_id="account_reports.line_template" primary="True">
-            <xpath expr="//div[hasclass('o_account_reports_domain_dropdown')]/*[last()]" position="before">
-                <li t-if="line['caret_options'] == 'invoice'" role="presentation" groups="account.group_account_user"/>
-            </xpath>
-        </template>
         
         <template id="template_turnover_report" inherit_id="account_reports.main_template" primary="True">
             <xpath expr="//tbody" position="replace">
@@ -21,8 +16,10 @@
                 </t>
             </xpath>
         </template>
-        
-        
-        
+        <template id="line_template_turnover_report" inherit_id="account_reports.line_template" primary="True">
+            <xpath expr="//div[hasclass('o_account_reports_domain_dropdown')]/*[last()]" position="before">
+                <li t-if="line['caret_options'] == 'invoice'" role="presentation" groups="account.group_account_user"/>
+            </xpath>
+        </template>
     </data>
 </odoo>
