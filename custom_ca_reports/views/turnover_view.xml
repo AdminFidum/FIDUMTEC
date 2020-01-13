@@ -2,7 +2,7 @@
 <odoo>
     <data>
         <record id="action_account_report_turnover" model="ir.actions.client">
-            <field name="name">Turnover by country</field>
+            <field name="name">Turnover By Country</field>
             <field name="tag">account_reports</field>
             <field name="context" eval="{'model': 'account.report.turnover.country'}" />
         </record>
