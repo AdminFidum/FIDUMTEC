@@ -19,7 +19,7 @@
         
         <template id="line_template_turnover_report" inherit_id="account_reports.line_template" primary="True">
             <xpath expr="//ul[hasclass('o_account_reports_domain_dropdown')]/li[last()]" position="before">
-                <li t-if="line['caret_options'] == 'invoice'" role="presentation" groups="account.group_account_user">
+                <li t-if="line['caret_options'] == 'invoice'" role="presentation" groups="account.group_account_user"/>
             </xpath>
         </template>
     </data>
