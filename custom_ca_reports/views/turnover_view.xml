@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
-        <record id="action_account_report_turnover" model="ir.actions.client">
-            <field name="name">Turnover by country</field>
-            <field name="tag">account_report</field>
-            <field name="context" eval="{'model': 'account.report.turnover.country'}" />
-        </record>
-        <menuitem id="menu_action_account_report_turnover" name="Turnover by country" action="action_account_report_turnover" parent="account_reports.account_reports_audit_reports_menu" groups="account.group_account_user"/>
+<report 
+    string="Export Invoice" 
+    id="account.invoice_export" 
+    model="account.invoice" 
+    report_type="qweb-pdf"
+    name="custom_reports_ept.report_export_invoice" 
+    file="custom_reports_ept.report_export_invoice" 
+/>
+<template id="report_export_invoice">
+        <t t-call="report.html_container">
+            <t t-foreach="docs" t-as="o">
+                <div class="page">
+                    <div class="oe_structure"/>
+                    <menuitem id="menu_action_account_report_turnover" name="Turnover by country" action="action_account_report_turnover" parent="account_reports.account_reports_audit_reports_menu" groups="account.group_account_user"/>
 
         <template id="line_template_turnover_report" inherit_id="account_reports.line_template" primary="True">
             <xpath expr="//div[hasclass('o_account_reports_domain_dropdown')]/*[last()]" position="before">
@@ -20,6 +27,8 @@
                 </t>
             </xpath>
         </template>
-
-    </data>
+                </div>
+            </t>
+        </t>
+     </template>
 </odoo>
