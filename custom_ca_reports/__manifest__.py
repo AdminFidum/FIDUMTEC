@@ -4,7 +4,7 @@
 {
     'name': 'Accounting Reports - Custom turnover',
     'version': '1.1',
-    'category': 'reporting',
+    'category': 'Accounting & Finance',
     'description': """
         A custom report to get turnover by country/partner
     """,
