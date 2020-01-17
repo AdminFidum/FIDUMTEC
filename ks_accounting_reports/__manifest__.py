@@ -19,7 +19,7 @@
 
     # always loaded
     'data': [
-        'views/account_general_ledger.xml',
+        #'views/account_general_ledger.xml',
     ],
     # only loaded in demonstration mode
     'demo': [],
