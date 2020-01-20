@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
     <openerp>
-        <data>
-           <record id="view_form_new_fields_inherited" model="ir.ui.view">
-            <field name="name">New Field View - Extension</field>
-            <field name="model">res.users</field>
-            <field name="inherit_id" ref="new_field.view_form_new_fields_inherited"/>
+       <data>
+    <record model="ir.ui.view" id="crm_case_form_view_oppor_inherited">
+            <field name="name">	crm.crm_case_form_view_oppor_inh</field>
+            <field name="model">crm.lead</field>
+            <field name="inherit_id" ref="rm.crm_case_form_view_oppor"/>
             <field name="arch" type="xml">
-                <field name="name" position="after">
-                    <field name="user_id" />
-                </field>
+               <!-- MIS CAMPOS -->
+               <field name="arch" type="xml">
+                   <xpath expr="//field[@name='members_ids']" position="after">
+                    <field name="members_id" required="1" placeholder="Members Name"/>
+                </xpath>
+            </field>
             </field>
         </record>
-        </data>
+    </data>
     </openerp>
