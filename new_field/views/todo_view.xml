@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <openerp>
+        <data>
+           <record id="view_form_new_fields_inherited" model="ir.ui.view">
+            <field name="name">New Field View - Extension</field>
+            <field name="model">res.users</field>
+            <field name="inherit_id" ref="new_field.view_form_new_fields_inherited"/>
+            <field name="arch" type="xml">
+                <field name="name" position="after">
+                    <field name="user_id" />
+                </field>
+            </field>
+        </record>
+        </data>
+    </openerp>
