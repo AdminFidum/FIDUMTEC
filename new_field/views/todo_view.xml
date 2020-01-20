@@ -7,7 +7,7 @@
                 <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
                 <field name="arch" type="xml">
                 <field name="team_id" position="after">
-                    <field name="team_id_users" required="1" placeholder="Team_id" domain='["&amp;",["sale_team_id.member_ids.active","=",True],["sale_team_id.name","=",["sales",team_id]]]' />
+                    <field name="team_id_users" required="1" placeholder="Team_id" domain='["&amp;",["sale_team_id.member_ids.active","=",True],["sale_team_id.name","=",["sales",[team_id]]]]' />
                 </field>
                 </field>
             </record>
