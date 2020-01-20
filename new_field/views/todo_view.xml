@@ -1,16 +1,16 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!--<?xml version="1.0" encoding="UTF-8"?>
     <openerp>
        <data>
-    <record model="ir.ui.view" id="crm_case_form_view_oppor_inherited">
-            <field name="name">	crm.crm_case_form_view_oppor_inh</field>
-            <field name="model">crm.team</field>
-            <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
-            <field name="arch" type="xml">
-               <!-- MIS CAMPOS -->
-               <field name="member_ids" position="after">
-                <field name="member_ids" required="1" placeholder="Members Name"/>
-            </field>
-            </field>
-        </record>
-    </data>
-    </openerp>
+             <record model="ir.ui.view" id="crm_case_form_view_oppor_inherited">
+                <field name="name">crm.crm_case_form_view_oppor_inh</field>
+                <field name="model">crm.team</field>
+                <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
+                <field name="arch" type="xml">
+                 MIS CAMPOS
+                <field name="member_ids" position="after">
+                    <field name="member_ids" required="1" placeholder="Members Name"/>
+                </field>
+                </field>
+            </record>
+        </data>
+    </openerp>-->
