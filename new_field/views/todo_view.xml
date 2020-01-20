@@ -7,8 +7,8 @@
             <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
             <field name="arch" type="xml">
                <!-- MIS CAMPOS -->
-               <field name="members_ids" position="after">
-                <field name="members_id" required="1" placeholder="Members Name"/>
+               <field name="member_ids" position="after">
+                <field name="member_ids" required="1" placeholder="Members Name"/>
             </field>
             </field>
         </record>
