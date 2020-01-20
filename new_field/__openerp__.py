@@ -3,5 +3,5 @@
     'description': 'Nuevo campo.',
     'author': 'Andres',
     'depends': ['crm'],
-    'data': ['todo_view.xml']
+    'data': ['views/todo_view.xml']
 }
