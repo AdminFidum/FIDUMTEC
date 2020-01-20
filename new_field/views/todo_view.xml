@@ -4,7 +4,7 @@
     <record model="ir.ui.view" id="crm_case_form_view_oppor_inherited">
             <field name="name">	crm.crm_case_form_view_oppor_inh</field>
             <field name="model">crm.lead</field>
-            <field name="inherit_id" ref="rm.crm_case_form_view_oppor"/>
+            <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
             <field name="arch" type="xml">
                <!-- MIS CAMPOS -->
                <field name="arch" type="xml">
