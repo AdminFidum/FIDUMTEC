@@ -1,5 +1,6 @@
 {
     'name': 'New Field',
     'description': 'Nuevo campo.',
-    'author': 'Andres'
+    'author': 'Andres',
+    'depends': ['crm'],
 }
