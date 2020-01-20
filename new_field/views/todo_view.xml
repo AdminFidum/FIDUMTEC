@@ -7,10 +7,8 @@
             <field name="inherit_id" ref="crm.crm_case_form_view_oppor"/>
             <field name="arch" type="xml">
                <!-- MIS CAMPOS -->
-               <field name="arch" type="xml">
-                   <xpath expr="//field[@name='members_ids']" position="after">
-                    <field name="members_id" required="1" placeholder="Members Name"/>
-                </xpath>
+               <field name="members_ids" position="after">
+                <field name="members_id" required="1" placeholder="Members Name"/>
             </field>
             </field>
         </record>
