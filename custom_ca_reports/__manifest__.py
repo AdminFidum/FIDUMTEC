@@ -2,14 +2,14 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 {
-    'name': 'Custom turnover Accounting Report',
+    'name': 'Accounting Reports - Custom turnover',
     'version': '1.1',
-    'category': 'Accounting & Finance',
+    'category': 'reporting',
     'description': """
         A custom report to get turnover by country/partner
     """,
     'depends': [
-        'account_reports', 'account_accountant'
+        'account_reports'
     ],
     'data': [
         'views/turnover_view.xml',
