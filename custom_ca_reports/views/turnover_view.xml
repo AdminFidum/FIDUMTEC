@@ -3,7 +3,7 @@
     <data>
     <report
     id="account_invoices"
-    model="account.report.turnover.country"
+    model="ir.actions.client"
     string="Turnover By Country"
     report_type="qweb-pdf"
     name="Turnover By Country"
