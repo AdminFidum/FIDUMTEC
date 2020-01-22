@@ -10,7 +10,7 @@
 
 
 
-        <template id="line_template_turnover_report" inherit_id="account_reports.line_template" primary="True">
+        <!--<template id="line_template_turnover_report" inherit_id="account_reports.line_template" primary="True">
            <xpath expr="//div[hasclass('o_account_reports_domain_dropdown')]/*[last()]" position="before">
                 <t t-if="line['caret_options'] == 'invoice'" role="presentation" groups="account.group_account_user"><a role="menuitem" tabindex="-1" t-att-data-id="line['id']" action="open_invoices">View Invoices</a></t>
             </xpath>
@@ -21,7 +21,13 @@
                     <t t-call="custom_ca_reports.line_template_turnover_report" />
                 </t>
             </xpath>
-        </template>
+        </template>-->
+
+        <template id="report_assets_common_custom_fonts" name="Custom QWeb fonts" inherit_id="web.report_assets_common">
+    <xpath expr="." position="inside">
+        <link href="/your_module/static/src/less/fonts.less" rel="stylesheet" type="text/less"/>
+    </xpath>
+</template>
 
     </data>
 </odoo>
