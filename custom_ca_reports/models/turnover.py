@@ -15,6 +15,8 @@ class ReportTurnoverCountry(models.AbstractModel):
 
     filter_date = {'date_from': '', 'date_to': '', 'filter': 'this_month'}
     filter_all_entries = False
+    filter_cash_basis = False
+    filter_journals = True
 
     def get_columns_name(self, options):
         return [{'name': _('Country')}, {'name': _('Turnover'), 'class': 'number'}]
