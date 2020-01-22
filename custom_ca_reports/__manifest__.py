@@ -2,7 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 {
-    'name': 'Accounting Reports - Custom turnover',
+    'name': 'Custom turnover Accounting Report',
     'version': '1.1',
     'category': 'Accounting & Finance',
     'description': """
