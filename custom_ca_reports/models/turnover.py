@@ -21,6 +21,24 @@ class ReportTurnoverCountry(models.AbstractModel):
     def get_columns_name(self, options):
         return [{'name': _('Country')}, {'name': _('Turnover'), 'class': 'number'}]
 
+        def get_templates(self):
+        templates = super(ReportTurnoverCountry, self).get_templates()
+        templates['main_template'] = 'custom_ca_reports.template_turnover_report'
+        templates['line_template'] = 'custom_ca_reports.line_template_turnover_report'
+        return templates
+
+    def open_invoices(self, options, params):
+        partner_id = int(params.get('id').split('_')[0])
+        [action] = self.env.ref('account.action_invoice_tree1').read()
+        action['context'] = self.env.context
+        action['domain'] = [
+            ('partner_id', '=', partner_id), 
+            ('date', '<=', options.get('date').get('date_to')), 
+            ('date', '>=', options.get('date').get('date_from'))
+        ]
+        action = clean_action(action)
+        return action
+
     @api.model
     def get_lines(self, options, line_id=None):
         lines = []
