@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
+    <report
+    id="account_invoices"
+    model="account.report.turnover.country"
+    string="Turnover By Country"
+    report_type="qweb-pdf"
+    name="Turnover By Country"
+    attachment_use="True"
+    attachment="(object.state in ('open','paid')) and
+        ('INV'+(object.number or '').replace('/','')+'.pdf')"
+/>
         <record id="action_account_report_turnover" model="ir.actions.client">
             <field name="name">Turnover by country</field>
             <field name="tag">account_report</field>
