@@ -6,8 +6,6 @@ from odoo import api, models, _
 from odoo.tools.misc import formatLang
 from odoo.exceptions import UserError
 from odoo.addons.web.controllers.main import clean_action
-from openerp.report import report_sxw
-from openerp.osv import osv
 
 class ReportTurnoverCountry(models.AbstractModel):
     _name = "account.report.turnover.country"
@@ -16,10 +14,6 @@ class ReportTurnoverCountry(models.AbstractModel):
 
     filter_date = {'date_from': '', 'date_to': '', 'filter': 'this_month'}
     filter_all_entries = False
-
-    class report_nombre(report_sxw.rml_parse):
-    def __init__(self,cr,uid,name,context):
-        super(report_nombre,self).__init__(cr,uid,name,context)
 
     def get_columns_name(self, options):
         return [{'name': _('Country')}, {'name': _('Turnover'), 'class': 'number'}]
