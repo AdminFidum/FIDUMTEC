@@ -7,6 +7,10 @@ from odoo.tools.misc import formatLang
 from odoo.exceptions import UserError
 from odoo.addons.web.controllers.main import clean_action
 
+class TurnoverCountry(report_sxw.rml_parse):
+    def __init__(self,cr,uid,name,context):
+        super(TurnoverCountry,self).__init__(cr,uid,name,context)
+
 
 class ReportTurnoverCountry(models.AbstractModel):
     _name = "account.report.turnover.country"
