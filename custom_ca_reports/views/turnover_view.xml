@@ -13,20 +13,28 @@
             parent="account_reports.account_reports_audit_reports_menu" 
             groups="account.group_account_user"
             />
-        
-        <template id="line_template_turnover_report" inherit_id="account_reports.line_template" primary="True">
-            <xpath expr="//div[hasclass('o_account_reports_domain_dropdown')]/*[last()]" position="before">
-                <t t-if="line['caret_options'] == 'invoice'" role="presentation" groups="account.group_account_user"><a role="menuitem" tabindex="-1" t-att-data-id="line['id']" action="open_invoices">View Invoices</a></t>
-        </xpath>
-        </template>
-        <template id="template_turnover_report" inherit_id="account_reports.main_template" primary="True">
-            <xpath expr="//tbody" position="replace">
-                <t t-if="lines.get('lines')">
-                    <t t-call="custom_ca_reports.line_template_turnover_report" />
+        <template id="report_invoice">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="web.external_layout">
+                        <div class="page">
+                            <template id="" inherit_id="account_reports.line_template" primary="True">
+                                <xpath expr="//div[hasclass('o_account_reports_domain_dropdown')]/*[last()]" position="before">
+                                    <t t-if="line['caret_options'] == 'invoice'" role="presentation" groups="account.group_account_user"><a role="menuitem" tabindex="-1" t-att-data-id="line['id']" action="open_invoices">View Invoices</a></t>
+                                </xpath>
+                            </template>
+                            
+                            <template id="template_turnover_report" inherit_id="account_reports.main_template" primary="True">
+                                <xpath expr="//tbody" position="replace">
+                                    <t t-if="lines.get('lines')">
+                                        <t t-call="custom_ca_reports.line_template_turnover_report" />
+                                    </t>
+                                </xpath>
+                            </template>
+                        </div>
+                    </t>
                 </t>
-            </xpath>
-            
+            </t>
         </template>
-
     </data>
 </odoo>

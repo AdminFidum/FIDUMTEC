@@ -89,7 +89,7 @@ class ReportTurnoverCountry(models.AbstractModel):
             lines.append({
                 'id': 'total',
                 'name': _('Total'),
-                'level': 1,
+                'level': 0,
                 'class': 'total',
                 'columns': [{'name': total}]
                 })
@@ -99,11 +99,11 @@ class ReportTurnoverCountry(models.AbstractModel):
     def get_report_name(self):
         return ('Turnover by country/partner')
 
-    #def get_templates(self): 
-    #    templates = super(ReportTurnoverCountry, self).get_templates()
-    #    templates['main_template'] = 'custom_ca_reports.template_turnover_report'
-    #    templates['line_template'] = 'custom_ca_reports.line_template_turnover_report'
-    #    return templates            
+    def get_templates(self): 
+        templates = super(ReportTurnoverCountry, self).get_templates()
+        templates['main_template'] = 'custom_ca_reports.template_turnover_report'
+        templates['line_template'] = 'custom_ca_reports.line_template_turnover_report'
+        return templates            
 
     #def open_invoices(self, options, params):
     #    partner_id = int(params.get('id').split('_')[0])
