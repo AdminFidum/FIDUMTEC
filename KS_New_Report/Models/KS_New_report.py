@@ -6,8 +6,7 @@ from odoo import api, models, _
 from odoo.tools.misc import formatLang
 from odoo.exceptions import UserError
 from odoo.addons.web.controllers.main import clean_action
-from openerp.report import report_sxw
-from openerp.osv import osv
+
 
 class ReportTurnoverCountry(models.AbstractModel):
     _name = "account.report.turnover.country"
@@ -16,10 +15,6 @@ class ReportTurnoverCountry(models.AbstractModel):
 
     filter_date = {'date_from': '', 'date_to': '', 'filter': 'this_month'}
     filter_all_entries = False
-
-    class report_nombre(report_sxw.rml_parse):
-    def __init__(self,cr,uid,name,context):
-        super(report_nombre,self).__init__(cr,uid,name,context)
 
     def get_columns_name(self, options):
         return [{'name': _('Country')}, {'name': _('Turnover'), 'class': 'number'}]
@@ -104,20 +99,20 @@ class ReportTurnoverCountry(models.AbstractModel):
     def get_report_name(self):
         return _('Turnover by country/partner')
 
-    #def get_templates(self):
-     #   templates = super(ReportTurnoverCountry, self).get_templates()
-      #  templates['main_template'] = 'custom_ca_reports.template_turnover_report'
-       # templates['line_template'] = 'custom_ca_reports.line_template_turnover_report'
-        #return templates
-#
- #   def open_invoices(self, options, params):
-  #      partner_id = int(params.get('id').split('_')[0])
-   #     [action] = self.env.ref('account.action_invoice_tree1').read()
-    #    action['context'] = self.env.context
-     #   action['domain'] = [
-      #      ('partner_id', '=', partner_id), 
-       ##     ('date', '<=', options.get('date').get('date_to')), 
-         #   ('date', '>=', options.get('date').get('date_from'))
-        #]
-        #action = clean_action(action)
-        #return action
+    def get_templates(self):
+        templates = super(ReportTurnoverCountry, self).get_templates()
+        templates['main_template'] = 'custom_ca_reports.template_turnover_report'
+        templates['line_template'] = 'custom_ca_reports.line_template_turnover_report'
+        return templates
+
+    def open_invoices(self, options, params):
+        partner_id = int(params.get('id').split('_')[0])
+        [action] = self.env.ref('account.action_invoice_tree1').read()
+        action['context'] = self.env.context
+        action['domain'] = [
+            ('partner_id', '=', partner_id), 
+            ('date', '<=', options.get('date').get('date_to')), 
+            ('date', '>=', options.get('date').get('date_from'))
+        ]
+        action = clean_action(action)
+        return action
