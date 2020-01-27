@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
     <openerp>
         <data>
-            <report
+            <!--<report
             string="Turnover By Country"
             model="account.report.turnover.country"
             report_type="qweb-pdf"
             name="KS_new_report.main_template_turnover_report"
-            />
+            />-->
             <template id="main_template_turnover_report">
             <t t-call="report.html_container">
                 <t t-call="report.external-layout">
