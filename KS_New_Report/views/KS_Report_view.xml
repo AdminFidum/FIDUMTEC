@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+    <openerp>
+        <data>
+            <report
+            string="Turnover By Country"
+            model="account.report.turnover.country"
+            report_type="qweb-pdf"
+            name="KS_new_report.main_template_turnover_report"
+            />
+            <template id="main_template_turnover_report">
+            <t t-call="report.html_container">
+                <t t-call="report.external-layout">
+                    <div class="header">
+                    </div>
+                    <div class="page">
+                        <template id="line_template_turnover_report" inherit_id="account_reports.line_template" primary="True">
+                            <xpath expr="//div[hasclass('o_account_reports_domain_dropdown')]/*[last()]" position="before">
+                                <t t-if="line['caret_options'] == 'invoice'" role="presentation" groups="account.group_account_user"><a role="menuitem" tabindex="-1" t-att-data-id="line['id']" action="open_invoices">View Invoices</a></t>
+                            </xpath>
+                        </template>
+                        <template id="template_turnover_report" inherit_id="account_reports.main_template" primary="True">
+                            <xpath expr="//tbody" position="replace">
+                                <t t-if="lines.get('lines')">
+                                    <t t-call="custom_ca_reports.line_template_turnover_report" />
+                                </t>
+                            </xpath>
+                        </template>
+                    </div>
+                    <div class="footer">
+                    </div>
+                </t>
+            </t>
+            </template>
+       </data>
+</openerp>
