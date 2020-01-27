@@ -1,12 +1,11 @@
 <?xml version="1.0"?>
     <openerp>
         <data>
-            <!--<report
-            string="Turnover By Country"
-            model="account.report.turnover.country"
-            report_type="qweb-pdf"
-            name="KS_new_report.main_template_turnover_report"
-            />-->
+            <record id="action_account_report_turnover" model="ir.actions.client">
+            <field name="name">Turnover by country</field>
+            <field name="tag">account_report</field>
+            <field name="context" eval="{'model': 'account.report.turnover.country'}" />
+        </record>
             <template id="main_template_turnover_report">
             <t t-call="report.html_container">
                 <t t-call="report.external-layout">
