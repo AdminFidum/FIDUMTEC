@@ -8,6 +8,7 @@
     'description': """
         
     """,
+    'category': 'reporting',
 
     'author': "Keep It Simple",
     'website': "http://www.kisforce.com",
