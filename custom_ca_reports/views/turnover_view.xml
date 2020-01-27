@@ -19,6 +19,7 @@
                     <t t-call="custom_ca_reports.line_template_turnover_report" />
                 </t>
             </xpath>
+            
         </template>
 
     </data>

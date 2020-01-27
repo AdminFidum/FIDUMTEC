@@ -16,10 +16,21 @@ class ReportTurnoverCountry(models.AbstractModel):
     filter_date = {'date_from': '', 'date_to': '', 'filter': 'this_month'}
     filter_all_entries = False
 
+    
+
+    @api.model
     def get_columns_name(self, options):
         return [{'name': _('Country')}, {'name': _('Turnover'), 'class': 'number'}]
 
-    @api.model
+    def get_report_name(self):
+        return ('Turnover by country/partner')
+
+    def get_templates(self):
+        templates = super(ReportTurnoverCountry, self).get_templates()
+        templates['main_template'] = 'custom_ca_reports.template_turnover_report'
+        templates['line_template'] = 'custom_ca_reports.line_template_turnover_report'
+        return templates
+
     def get_lines(self, options, line_id=None):
         lines = []
         tables, where_clause, where_params = self.env['account.move.line'].with_context(strict_range=True)._query_get()
@@ -96,14 +107,6 @@ class ReportTurnoverCountry(models.AbstractModel):
 
         return lines
 
-    def get_report_name(self):
-        return ('Turnover by country/partner')
-
-    def get_templates(self):
-        templates = super(ReportTurnoverCountry, self).get_templates()
-        templates['main_template'] = 'custom_ca_reports.template_turnover_report'
-        templates['line_template'] = 'custom_ca_reports.line_template_turnover_report'
-        return templates
 
     def open_invoices(self, options, params):
         partner_id = int(params.get('id').split('_')[0])
