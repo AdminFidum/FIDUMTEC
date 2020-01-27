@@ -2,7 +2,7 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 import time
-from odoo import api, models, _
+from odoo import api, models
 from odoo.tools.misc import formatLang
 from odoo.exceptions import UserError
 from odoo.addons.web.controllers.main import clean_action
@@ -97,7 +97,7 @@ class ReportTurnoverCountry(models.AbstractModel):
         return lines
 
     def get_report_name(self):
-        return _('Turnover by country/partner')
+        return ('Turnover by country/partner')
 
     def get_templates(self):
         templates = super(ReportTurnoverCountry, self).get_templates()
