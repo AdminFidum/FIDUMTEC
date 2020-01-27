@@ -19,7 +19,7 @@ class ReportTurnoverCountry(models.AbstractModel):
     def get_columns_name(self, options): #Devuelve los objetos que representan el header o la cabecera
         return [{'name': _('Country')}, {'name': _('Turnover'), 'class': 'number'}]
 
-    @api.model
+    @api.multi
     def get_lines(self, options, line_id=None): #Devuelve todas las lineas para el reporte
         lines = []
         tables, where_clause, where_params = self.env['account.move.line'].with_context(strict_range=True)._query_get()
@@ -89,7 +89,7 @@ class ReportTurnoverCountry(models.AbstractModel):
             lines.append({
                 'id': 'total',
                 'name': _('Total'),
-                'level': 0,
+                'level': 1,
                 'class': 'total',
                 'columns': [{'name': total}]
                 })
