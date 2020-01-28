@@ -2,10 +2,12 @@
 # Part of Odoo. See LICENSE file for full copyright and licensing details.
 
 import time
-from odoo import api, models, _
-from odoo.tools.misc import formatLang
-from odoo.exceptions import UserError
+from odoo import models, fields, api, _
+from odoo.tools.misc import format_date
+from datetime import datetime, timedelta
 from odoo.addons.web.controllers.main import clean_action
+from odoo.tools import float_is_zero
+from odoo.exceptions import UserError
 
 
 class ks_general_ledger(models.AbstractModel):
