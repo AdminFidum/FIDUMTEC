@@ -18,7 +18,7 @@
         <template id="template_ks_general_ledger" inherit_id="account_reports.main_template" primary="True">
             <xpath expr="//tbody" position="replace">
                 <t t-if="lines.get('lines')">
-                    <t t-call="custom_ca_reports.line_template_ks_general_ledger" />
+                    <t t-call="ks_accounting_reports.line_template_ks_general_ledger" />
                 </t>
             </xpath>
         </template>
