@@ -8,9 +8,9 @@ from odoo.exceptions import UserError
 from odoo.addons.web.controllers.main import clean_action
 
 
-class ReportTurnoverCountry(models.AbstractModel):
-    _name = "account.report.turnover.country"
-    _description = "Turnover by country/partner"
+class ks_general_ledger(models.AbstractModel):
+    _name = "account.report.ks.general.ledger"
+    _description = "KS General Ledger"
     _inherit = 'account.report'
 
     filter_date = {'date_from': '', 'date_to': '', 'filter': 'this_month'}
@@ -100,9 +100,9 @@ class ReportTurnoverCountry(models.AbstractModel):
         return _('Turnover by country/partner')
 
     def get_templates(self):
-        templates = super(ReportTurnoverCountry, self).get_templates()
-        templates['main_template'] = 'custom_ca_reports.template_turnover_report'
-        templates['line_template'] = 'custom_ca_reports.line_template_turnover_report'
+        templates = super(ks_general_ledger, self).get_templates()
+        templates['main_template'] = 'ks_accounting_reports.template_ks_general_ledger'
+        templates['line_template'] = 'ks_accounting_reports.line_template_ks_general_ledger'
         return templates
 
     def open_invoices(self, options, params):
