@@ -205,8 +205,8 @@ class ks_general_ledger(models.AbstractModel):
 
         unaff_earnings_treated_companies = set()
         unaffected_earnings_type = self.env.ref('account.data_unaffected_earnings')
-        for name, result in results.items():
-            account = self.env['account.account'].browse(name)
+        for code, result in results.items():
+            account = self.env['account.account'].browse(code)
             accounts[account] = result
             accounts[account]['initial_bal'] = initial_bal_results.get(account.id, {'balance': 0, 'amount_currency': 0, 'debit': 0, 'credit': 0})
             if account.user_type_id == unaffected_earnings_type and account.company_id not in unaff_earnings_treated_companies:
@@ -223,7 +223,7 @@ class ks_general_ledger(models.AbstractModel):
                     'strict_range': True,
                     'date_from': context['date_from_aml'],
                 }
-            aml_ids = self.with_context(**aml_ctx)._do_query(options, name, group_by_account=False)
+            aml_ids = self.with_context(**aml_ctx)._do_query(options, code, group_by_account=False)
             aml_ids = [x[0] for x in aml_ids]
 
             accounts[account]['total_lines'] = len(aml_ids)
