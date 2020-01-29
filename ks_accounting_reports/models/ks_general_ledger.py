@@ -206,7 +206,7 @@ class ks_general_ledger(models.AbstractModel):
         unaff_earnings_treated_companies = set()
         unaffected_earnings_type = self.env.ref('account.data_unaffected_earnings')
         for account_id, result in results.items():
-            account = self.env['account.account'].browse(account_id)
+            account = self.env['account.account'].browse((account_id[:2]))
             accounts[account] = result
             accounts[account]['initial_bal'] = initial_bal_results.get(account.id, {'balance': 0, 'amount_currency': 0, 'debit': 0, 'credit': 0})
             if account.user_type_id == unaffected_earnings_type and account.company_id not in unaff_earnings_treated_companies:
@@ -313,7 +313,7 @@ class ks_general_ledger(models.AbstractModel):
             if offset == 0:
                 lines.append({
                     'id': 'account_%s' % (account.id,),
-                    'name': len(display_name) > 40 and not context.get('print_mode') and display_name[:40]+'...' or display_name[:2],
+                    'name': len(display_name) > 40 and not context.get('print_mode') and display_name[:40]+'...' or display_name,
                     'title_hover': display_name,
                     'columns': [{'name': v} for v in [amount_currency, self.format_value(debit), self.format_value(credit), self.format_value(balance)]],
                     'level': 2,
