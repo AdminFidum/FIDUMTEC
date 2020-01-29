@@ -150,7 +150,7 @@ class ks_general_ledger(models.AbstractModel):
             select = "SELECT \"account_move_line\".id"
         sql = "%s FROM %s WHERE %s%s"
         if group_by_account:
-            sql +=  "GROUP BY \"account_move_line\"name"
+            sql +=  "GROUP BY \"account_move_line\".name"
         else:
             sql += " GROUP BY \"account_move_line\".id"
             sql += " ORDER BY MAX(\"account_move_line\".date),\"account_move_line\".id"
