@@ -150,7 +150,7 @@ class ks_general_ledger(models.AbstractModel):
             select = "SELECT \"account_move_line\".id"
         sql = "%s FROM %s WHERE %s%s"
         if group_by_account:
-            sql +=  "GROUP BY \"account_move_line\".account_id"
+            sql +=  "GROUP BY \"account_move_line\".account_id like '00%'"
         else:
             sql += " GROUP BY \"account_move_line\".id"
             sql += " ORDER BY MAX(\"account_move_line\".date),\"account_move_line\".id"
@@ -206,7 +206,8 @@ class ks_general_ledger(models.AbstractModel):
         unaff_earnings_treated_companies = set()
         unaffected_earnings_type = self.env.ref('account.data_unaffected_earnings')
         for account_id, result in results.items():
-            account = self.env['account.account'].browse((account_id[:2]))
+            account = self.env['account.account'].browse(account_id)
+            
             accounts[account] = result
             accounts[account]['initial_bal'] = initial_bal_results.get(account.id, {'balance': 0, 'amount_currency': 0, 'debit': 0, 'credit': 0})
             if account.user_type_id == unaffected_earnings_type and account.company_id not in unaff_earnings_treated_companies:
