@@ -209,7 +209,7 @@ class ks_general_ledger(models.AbstractModel):
             account = self.env['account.account'].browse(code)
             account_code = account.code[:2]
             accounts[account_code] = result
-            accounts[account_code]['initial_bal'] = initial_bal_results.get(account_code, {'balance': 0, 'amount_currency': 0, 'debit': 0, 'credit': 0})
+            accounts[account_code]['initial_bal'] = initial_bal_results.get(account.id, {'balance': 0, 'amount_currency': 0, 'debit': 0, 'credit': 0})
             if account.user_type_id == unaffected_earnings_type and account.company_id not in unaff_earnings_treated_companies:
                 #add the benefit/loss of previous fiscal year to unaffected earnings accounts
                 unaffected_earnings_results = unaffected_earnings_per_company[account.company_id]
