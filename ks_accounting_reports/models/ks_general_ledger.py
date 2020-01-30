@@ -313,7 +313,7 @@ class ks_general_ledger(models.AbstractModel):
             # don't add header for `load more`
             if offset == 0:
                 lines.append({
-                    'id': 'account_%s' % (account.account.code,),
+                    'id': 'account_%s' % (account.code,),
                     'name': len(display_name) > 40 and not context.get('print_mode') and display_name[:40]+'...' or display_name,
                     'title_hover': display_name,
                     'columns': [{'name': v} for v in [amount_currency, self.format_value(debit), self.format_value(credit), self.format_value(balance)]],
