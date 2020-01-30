@@ -142,7 +142,7 @@ class ks_general_ledger(models.AbstractModel):
 
     def _do_query(self, options, line_id, group_by_account=True, limit=False):
         if group_by_account:
-            select = "SELECT substr (\"account_move_line\".code, 0,1)"
+            select = "SELECT substr (\"account_move_line\".account.code, 0,1)"
             select += ',COALESCE(SUM(\"account_move_line\".debit-\"account_move_line\".credit), 0),SUM(\"account_move_line\".amount_currency),SUM(\"account_move_line\".debit),SUM(\"account_move_line\".credit)'
             if options.get('cash_basis'):
                 select = select.replace('debit', 'debit_cash_basis').replace('credit', 'credit_cash_basis').replace('balance', 'balance_cash_basis')
