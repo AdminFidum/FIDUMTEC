@@ -237,7 +237,7 @@ class ks_general_ledger(models.AbstractModel):
             if not context.get('print_mode'):
                 aml_ids = aml_ids[offset:stop]
 
-            accounts[account]['lines'] = self.env['account.move.line'].browse(aml_ids)
+            accounts[account]['lines'] = self.env['account.account'].browse(aml_ids)
 
         # For each company, if the unaffected earnings account wasn't in the selection yet: add it manually
         user_currency = self.env.user.company_id.currency_id
