@@ -76,7 +76,7 @@ class ks_general_ledger(models.AbstractModel):
                    LEFT JOIN account_move_line aml ON aml.id = part.debit_move_id
                    LEFT JOIN (SELECT move_id, account_id, ABS(SUM(balance)) AS total_per_account
                                 FROM account_move_line
-                                GROUP BY move_id, code) sub_aml
+                                GROUP BY move_id, account.account.code) sub_aml
                             ON (aml.account_id = sub_aml.account_id AND sub_aml.move_id=aml.move_id)
                    LEFT JOIN account_move am ON aml.move_id = am.id,""" + tables + """
                    WHERE part.credit_move_id = "account_move_line".id
