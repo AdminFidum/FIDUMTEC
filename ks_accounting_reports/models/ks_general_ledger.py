@@ -152,7 +152,7 @@ class ks_general_ledger(models.AbstractModel):
         if group_by_account:
             sql +=  "GROUP BY \"account_move_line\".account_id"
         else:
-            sql += " GROUP BY \"account_move_line\".code"
+            sql += " GROUP BY \"account_move_line\".account_id"
             sql += " ORDER BY MAX(\"account_move_line\".date),\"account_move_line\".id"
             if limit and isinstance(limit, int):
                 sql += " LIMIT " + str(limit)
