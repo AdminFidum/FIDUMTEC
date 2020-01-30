@@ -334,7 +334,7 @@ class ks_general_ledger(models.AbstractModel):
                         'class': 'o_account_reports_initial_balance',
                         'name': _('Initial Balance'),
                         'parent_id': 'account_%s' % (account.id,),
-                        'columns': [{'name': v} for v in ['', '', '', initial_currency, self.format_value(initial_debit), self.format_value(initial_credit), self.format_value(initial_balance)]],
+                        'columns': [{'name': v} for v in ['Date', 'Comunication', 'Partner', initial_currency, self.format_value(initial_debit), self.format_value(initial_credit), self.format_value(initial_balance)]],
                     })
                     progress = initial_balance
                 else:
