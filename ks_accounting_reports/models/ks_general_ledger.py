@@ -132,7 +132,7 @@ class ks_general_ledger(models.AbstractModel):
         aml_domain = [('user_type_id.include_initial_balance', '=', False)]
         if company:
             aml_domain += [('company_id', '=', company.id)]
-        tables, where_clause, where_params = self.env['account.account']._query_get(domain=aml_domain)
+        tables, where_clause, where_params = self.env['account.move.line']._query_get(domain=aml_domain)
         query = select % (tables, where_clause)
         self.env.cr.execute(with_sql + query, with_params + where_params)
         res = self.env.cr.fetchone()
@@ -150,7 +150,7 @@ class ks_general_ledger(models.AbstractModel):
             select = "SELECT \"account_move_line\".id"
         sql = "%s FROM %s WHERE %s%s"
         if group_by_account:
-            sql +=  " GROUP BY \"account_move_line\".account_id"
+            sql +=  "GROUP BY \"account_move_line\".account_id"
         else:
             sql += " GROUP BY \"account_move_line\".id"
             sql += " ORDER BY MAX(\"account_move_line\".date),\"account_move_line\".id"
