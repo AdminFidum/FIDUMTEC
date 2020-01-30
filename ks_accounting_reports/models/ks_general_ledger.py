@@ -252,11 +252,7 @@ class ks_general_ledger(models.AbstractModel):
                     accounts[unaffected_earnings_account[0]]['initial_bal'] = unaffected_earnings_per_company[company]
                     accounts[unaffected_earnings_account[0]]['lines'] = []
                     accounts[unaffected_earnings_account[0]]['total_lines'] = 0
-
-        global df, accountsCodes
-        df = pd.DataFrame(accounts)
-        accountsCodes = df.groupby(['account.account.code']).groups
-        return accountsCodes
+        return accounts
 
     def _get_taxes(self, journal):
         tables, where_clause, where_params = self.env['account.move.line']._query_get()
