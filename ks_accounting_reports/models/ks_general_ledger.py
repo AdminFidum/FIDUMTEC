@@ -206,7 +206,7 @@ class ks_general_ledger(models.AbstractModel):
         unaff_earnings_treated_companies = set()
         unaffected_earnings_type = self.env.ref('account.data_unaffected_earnings')
         for code, result in results.items():
-            account = self.env['account.account'].browse(code[:2])
+            account = self.env['account.account'].browse(code)
             accounts[account] = result
             accounts[account]['initial_bal'] = initial_bal_results.get(account.code, {'balance': 0, 'amount_currency': 0, 'debit': 0, 'credit': 0})
             if account.user_type_id == unaffected_earnings_type and account.company_id not in unaff_earnings_treated_companies:
