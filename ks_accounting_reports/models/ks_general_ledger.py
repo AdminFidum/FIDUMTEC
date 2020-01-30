@@ -177,7 +177,7 @@ class ks_general_ledger(models.AbstractModel):
 
         compute_table = {
             a.id: build_converter(a.company_id.currency_id)
-            for a in self.env['account.account'].browse([k[0] for k in results])
+            for a in self.env['account.account.code'].browse([k[0] for k in results])
         }
         results = dict([(
             k[0], {
