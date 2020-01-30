@@ -132,7 +132,7 @@ class ks_general_ledger(models.AbstractModel):
         aml_domain = [('user_type_id.include_initial_balance', '=', False)]
         if company:
             aml_domain += [('company_id', '=', company.id)]
-        tables, where_clause, where_params = self.env['account.move.line']._query_get(domain=aml_domain)
+        tables, where_clause, where_params = self.env['account.account']._query_get(domain=aml_domain)
         query = select % (tables, where_clause)
         self.env.cr.execute(with_sql + query, with_params + where_params)
         res = self.env.cr.fetchone()
