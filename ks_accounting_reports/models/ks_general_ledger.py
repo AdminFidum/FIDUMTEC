@@ -207,6 +207,7 @@ class ks_general_ledger(models.AbstractModel):
         unaffected_earnings_type = self.env.ref('account.data_unaffected_earnings')
         for code, result in results.items():
             account = self.env['account.account'].browse(code)
+            account = account[:2]
             accounts[account] = result
             accounts[account]['initial_bal'] = initial_bal_results.get(account.id, {'balance': 0, 'amount_currency': 0, 'debit': 0, 'credit': 0})
             if account.user_type_id == unaffected_earnings_type and account.company_id not in unaff_earnings_treated_companies:
@@ -297,7 +298,7 @@ class ks_general_ledger(models.AbstractModel):
         unfold_all = context.get('print_mode') and len(options.get('unfolded_lines')) == 0
         sum_debit = sum_credit = sum_balance = 0
         for account in sorted_accounts:
-            display_name = account.code + " " + account.name
+            display_name = account.code[:2] + " " + account.name
             if options.get('filter_accounts'):
                 #skip all accounts where both the code and the name don't start with the given filtering string
                 if not any([display_name_part.lower().startswith(options['filter_accounts'].lower()) for display_name_part in display_name.split(' ')]):
