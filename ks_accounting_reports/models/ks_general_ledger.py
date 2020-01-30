@@ -299,7 +299,7 @@ class ks_general_ledger(models.AbstractModel):
         for account in sorted_accounts:
             display_name = account.code + " " + account.name
             if options.get('filter_accounts'):
-                #skip all accounts where bosth the code and the name don't start with the given filtering string
+                #skip all accounts where both the code and the name don't start with the given filtering string
                 if not any([display_name_part.lower().startswith(options['filter_accounts'].lower()) for display_name_part in display_name.split(' ')]):
                     continue
             debit = grouped_accounts[account]['debit']
