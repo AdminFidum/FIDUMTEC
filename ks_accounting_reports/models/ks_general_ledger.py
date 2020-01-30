@@ -142,7 +142,7 @@ class ks_general_ledger(models.AbstractModel):
 
     def _do_query(self, options, line_id, group_by_account=True, limit=False):
         if group_by_account:
-            select = "SELECT \"account\".code"
+            select = "SELECT \"account_move_line\".account_id"
             select += ',COALESCE(SUM(\"account_move_line\".debit-\"account_move_line\".credit), 0),SUM(\"account_move_line\".amount_currency),SUM(\"account_move_line\".debit),SUM(\"account_move_line\".credit)'
             if options.get('cash_basis'):
                 select = select.replace('debit', 'debit_cash_basis').replace('credit', 'credit_cash_basis').replace('balance', 'balance_cash_basis')
@@ -209,7 +209,7 @@ class ks_general_ledger(models.AbstractModel):
             account = self.env['account.account'].browse(code)
             account_code = account[:2]
             accounts[account_code] = result
-            accounts[account_code]['initial_bal'] = initial_bal_results.get(account_code.id, {'balance': 0, 'amount_currency': 0, 'debit': 0, 'credit': 0})
+            accounts[account_code]['initial_bal'] = initial_bal_results.get(account_code.code, {'balance': 0, 'amount_currency': 0, 'debit': 0, 'credit': 0})
             if account.user_type_id == unaffected_earnings_type and account.company_id not in unaff_earnings_treated_companies:
                 #add the benefit/loss of previous fiscal year to unaffected earnings accounts
                 unaffected_earnings_results = unaffected_earnings_per_company[account.company_id]
