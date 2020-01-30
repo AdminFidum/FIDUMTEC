@@ -208,7 +208,7 @@ class ks_general_ledger(models.AbstractModel):
         for code, result in results.items():
             accoun = self.env['account.account'].browse(code)
             codesh = accoun.code
-            num = '2'
+            num = "2"
             codesh = code[:num]
             account = self.env['account.account'].browse(codesh)
             accounts[account] = result
