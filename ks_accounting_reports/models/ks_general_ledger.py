@@ -331,7 +331,7 @@ class ks_general_ledger(models.AbstractModel):
                 domain_lines = []
                 if offset == 0:
                     domain_lines.append({
-                        'id': 'initial_%s' % (account.id,),
+                        'id': 'initial_%s' % (account.code,),
                         'class': 'o_account_reports_initial_balance',
                         'name': _('Initial Balance'),
                         'parent_id': 'account_%s' % (account.id,),
