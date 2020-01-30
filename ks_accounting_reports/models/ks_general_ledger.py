@@ -216,7 +216,7 @@ class ks_general_ledger(models.AbstractModel):
                 for field in ['balance', 'debit', 'credit']:
                     accounts[account]['initial_bal'][field] += unaffected_earnings_results[field]
                     accounts[account][field] += unaffected_earnings_results[field]
-                unaff_earnings_treated_companies.add(account.company_id)
+                unaff_earnings_treated_companies.add(account.code[:2])
             #use query_get + with statement instead of a search in order to work in cash basis too
             aml_ctx = {}
             if context.get('date_from_aml'):
