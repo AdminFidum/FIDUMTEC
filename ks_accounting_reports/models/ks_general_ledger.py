@@ -8,6 +8,8 @@ from datetime import datetime, timedelta
 from odoo.addons.web.controllers.main import clean_action
 from odoo.tools import float_is_zero
 from odoo.exceptions import UserError
+import pandas as pd
+import numpy as np
 
 
 class ks_general_ledger(models.AbstractModel):
@@ -250,6 +252,9 @@ class ks_general_ledger(models.AbstractModel):
                     accounts[unaffected_earnings_account[0]]['initial_bal'] = unaffected_earnings_per_company[company]
                     accounts[unaffected_earnings_account[0]]['lines'] = []
                     accounts[unaffected_earnings_account[0]]['total_lines'] = 0
+
+        
+        accountCode = accounts.groupby('account.account.code').sort_values(ascending=False)
         return accounts
 
     def _get_taxes(self, journal):
@@ -295,7 +300,6 @@ class ks_general_ledger(models.AbstractModel):
         global grouped_accounts
         grouped_accounts = self.with_context(date_from_aml=dt_from, date_from=dt_from and company_id.compute_fiscalyear_dates(fields.Date.from_string(dt_from))['date_from'] or None)._group_by_account_id(options, line_id)
         global sorted_accounts
-        print (grouped_accounts)
         sorted_accounts = sorted(grouped_accounts, key=lambda a: a.code)
         unfold_all = context.get('print_mode') and len(options.get('unfolded_lines')) == 0
         sum_debit = sum_credit = sum_balance = 0
