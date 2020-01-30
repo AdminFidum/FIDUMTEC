@@ -207,16 +207,15 @@ class ks_general_ledger(models.AbstractModel):
         unaffected_earnings_type = self.env.ref('account.data_unaffected_earnings')
         for code, result in results.items():
             account = self.env['account.account'].browse(code)
-            account_code = account[:2]
-            accounts[account_code] = result
-            accounts[account_code]['initial_bal'] = initial_bal_results.get(account_code.id, {'balance': 0, 'amount_currency': 0, 'debit': 0, 'credit': 0})
+            accounts[account] = result
+            accounts[account]['initial_bal'] = initial_bal_results.get(account.id, {'balance': 0, 'amount_currency': 0, 'debit': 0, 'credit': 0})
             if account.user_type_id == unaffected_earnings_type and account.company_id not in unaff_earnings_treated_companies:
                 #add the benefit/loss of previous fiscal year to unaffected earnings accounts
                 unaffected_earnings_results = unaffected_earnings_per_company[account.company_id]
                 for field in ['balance', 'debit', 'credit']:
-                    accounts[account_code]['initial_bal'][field] += unaffected_earnings_results[field]
-                    accounts[account_code][field] += unaffected_earnings_results[field]
-                unaff_earnings_treated_companies.add(account.code)
+                    accounts[account]['initial_bal'][field] += unaffected_earnings_results[field]
+                    accounts[account][field] += unaffected_earnings_results[field]
+                unaff_earnings_treated_companies.add(account.company_id)
             #use query_get + with statement instead of a search in order to work in cash basis too
             aml_ctx = {}
             if context.get('date_from_aml'):
@@ -298,7 +297,7 @@ class ks_general_ledger(models.AbstractModel):
         unfold_all = context.get('print_mode') and len(options.get('unfolded_lines')) == 0
         sum_debit = sum_credit = sum_balance = 0
         for account in sorted_accounts:
-            display_name = account.code# + " " + account.name
+            display_name = account.code + " " + account.name
             if options.get('filter_accounts'):
                 #skip all accounts where both the code and the name don't start with the given filtering string
                 if not any([display_name_part.lower().startswith(options['filter_accounts'].lower()) for display_name_part in display_name.split(' ')]):
