@@ -208,8 +208,7 @@ class ks_general_ledger(models.AbstractModel):
         for code, result in results.items():
             accoun = self.env['account.account'].browse(code)
             codesh = accoun.code
-            num = ":2"
-            codesh = code[num]
+            codesh = code[0:2]
             account = self.env['account.account'].browse(codesh)
             accounts[account] = result
             accounts[account]['initial_bal'] = initial_bal_results.get(account.id, {'balance': 0, 'amount_currency': 0, 'debit': 0, 'credit': 0})
