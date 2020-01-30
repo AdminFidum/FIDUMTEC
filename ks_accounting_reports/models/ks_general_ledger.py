@@ -92,7 +92,7 @@ class ks_general_ledger(models.AbstractModel):
                    LEFT JOIN account_move_line aml ON aml.id = part.credit_move_id
                    LEFT JOIN (SELECT move_id, account_id, ABS(SUM(balance)) AS total_per_account
                                 FROM account_move_line
-                                GROUP BY move_id, account_id.account.account.code) sub_aml
+                                GROUP BY move_id, account_id) sub_aml
                             ON (aml.account_id = sub_aml.account_id AND sub_aml.move_id=aml.move_id)
                    LEFT JOIN account_move am ON aml.move_id = am.id,""" + tables + """
                    WHERE part.debit_move_id = "account_move_line".id
@@ -150,7 +150,7 @@ class ks_general_ledger(models.AbstractModel):
             select = "SELECT \"account_move_line\".id"
         sql = "%s FROM %s WHERE %s%s"
         if group_by_account:
-            sql +=  "GROUP BY \"account_move_line\".account_id"
+            sql +=  "GROUP BY \"account_move_line\".account_id.account.account.code"
         else:
             sql += " GROUP BY \"account_move_line\".id"
             sql += " ORDER BY MAX(\"account_move_line\".date),\"account_move_line\".id"
