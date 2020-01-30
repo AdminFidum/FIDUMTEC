@@ -206,11 +206,9 @@ class ks_general_ledger(models.AbstractModel):
         unaff_earnings_treated_companies = set()
         unaffected_earnings_type = self.env.ref('account.data_unaffected_earnings')
         for code, result in results.items():
-            account = self.env['account.account'].browse(code)
+            account = self.env['account.account'].browse(code[:2])
             accounts[account] = result
-            global realcode
-            realcode = self.env['account.account'].browse(code)
-            accounts[account]['initial_bal'] = initial_bal_results.get(realcode.code[0:2], {'balance': 0, 'amount_currency': 0, 'debit': 0, 'credit': 0})
+            accounts[account]['initial_bal'] = initial_bal_results.get(account.code, {'balance': 0, 'amount_currency': 0, 'debit': 0, 'credit': 0})
             if account.user_type_id == unaffected_earnings_type and account.company_id not in unaff_earnings_treated_companies:
                 #add the benefit/loss of previous fiscal year to unaffected earnings accounts
                 unaffected_earnings_results = unaffected_earnings_per_company[account.company_id]
@@ -301,7 +299,7 @@ class ks_general_ledger(models.AbstractModel):
         unfold_all = context.get('print_mode') and len(options.get('unfolded_lines')) == 0
         sum_debit = sum_credit = sum_balance = 0
         for account in sorted_accounts:
-            display_name = realcode.code[0:2]+" - "+account.code + " " + account.name
+            display_name = account.code + " " + account.name
             if options.get('filter_accounts'):
                 #skip all accounts where both the code and the name don't start with the given filtering string
                 if not any([display_name_part.lower().startswith(options['filter_accounts'].lower()) for display_name_part in display_name.split(' ')]):
