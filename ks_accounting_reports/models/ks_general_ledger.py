@@ -255,7 +255,7 @@ class ks_general_ledger(models.AbstractModel):
 
         global df, accountsCodes
         df = pd.DataFrame(accounts)
-        accountsCodes = df.groupby(['code[:2]']).groups
+        accountsCodes = df.groupby(['code']).groups
         return accountsCodes
 
     def _get_taxes(self, journal):
