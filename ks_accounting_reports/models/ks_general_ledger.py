@@ -244,7 +244,7 @@ class ks_general_ledger(models.AbstractModel):
         for cid in context.get('company_ids', []):
             company = self.env['res.company'].browse(cid)
             if company not in unaff_earnings_treated_companies and not float_is_zero(unaffected_earnings_per_company[company]['balance'], precision_digits=user_currency.decimal_places):
-                unaffected_earnings_account = self.env['account.account'].search([
+                unaffected_earnings_account = self.env['account.move.line'].search([
                     ('user_type_id', '=', unaffected_earnings_type.id), ('company_id', '=', company.id)
                 ], limit=1)
                 if unaffected_earnings_account and (not line_id or unaffected_earnings_account.id == line_id):
