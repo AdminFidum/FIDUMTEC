@@ -206,17 +206,17 @@ class ks_general_ledger(models.AbstractModel):
         unaff_earnings_treated_companies = set()
         unaffected_earnings_type = self.env.ref('account.data_unaffected_earnings')
         for code, result in results.items():
-            account = self.env['account.account'].browse(code)
-            account1 = account[:2]
-            accounts[account1] = result
-            accounts[account1]['initial_bal'] = initial_bal_results.get(account1.id, {'balance': 0, 'amount_currency': 0, 'debit': 0, 'credit': 0})
-            if account1.user_type_id == unaffected_earnings_type and account1.company_id not in unaff_earnings_treated_companies:
+            account = self.env['account.account'].browse(code[:2])
+            account = account[:2]
+            accounts[account] = result
+            accounts[account]['initial_bal'] = initial_bal_results.get(account.id, {'balance': 0, 'amount_currency': 0, 'debit': 0, 'credit': 0})
+            if account.user_type_id == unaffected_earnings_type and account.company_id not in unaff_earnings_treated_companies:
                 #add the benefit/loss of previous fiscal year to unaffected earnings accounts
-                unaffected_earnings_results = unaffected_earnings_per_company[account1.company_id]
+                unaffected_earnings_results = unaffected_earnings_per_company[account.company_id]
                 for field in ['balance', 'debit', 'credit']:
-                    accounts[account1]['initial_bal'][field] += unaffected_earnings_results[field]
-                    accounts[account1][field] += unaffected_earnings_results[field]
-                unaff_earnings_treated_companies.add(account1.code[:2])
+                    accounts[account]['initial_bal'][field] += unaffected_earnings_results[field]
+                    accounts[account][field] += unaffected_earnings_results[field]
+                unaff_earnings_treated_companies.add(account.code[:2])
             #use query_get + with statement instead of a search in order to work in cash basis too
             aml_ctx = {}
             if context.get('date_from_aml'):
