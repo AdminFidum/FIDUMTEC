@@ -142,7 +142,7 @@ class ks_general_ledger(models.AbstractModel):
 
     def _do_query(self, options, line_id, group_by_account=True, limit=False):
         if group_by_account:
-            select = "SELECT \"account_move_line\".account_id.code"
+            select = "SELECT \"account_move_line\".account_id"
             select += ',COALESCE(SUM(\"account_move_line\".debit-\"account_move_line\".credit), 0),SUM(\"account_move_line\".amount_currency),SUM(\"account_move_line\".debit),SUM(\"account_move_line\".credit)'
             if options.get('cash_basis'):
                 select = select.replace('debit', 'debit_cash_basis').replace('credit', 'credit_cash_basis').replace('balance', 'balance_cash_basis')
@@ -159,7 +159,7 @@ class ks_general_ledger(models.AbstractModel):
         user_types = self.env['account.account.type'].search([('type', 'in', ('receivable', 'payable'))])
         with_sql, with_params = self._get_with_statement(user_types)
         tables, where_clause, where_params = self.env['account.move.line']._query_get()
-        line_clause = line_id and ' AND \"account_move_line\".account_id' or ''
+        line_clause = line_id and ' AND \"account_move_line\".account_id = ' + str(line_id) or ''
         query = sql % (select, tables, where_clause, line_clause)
         self.env.cr.execute(with_sql + query, with_params + where_params)
         results = self.env.cr.fetchall()
