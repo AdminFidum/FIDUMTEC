@@ -148,9 +148,10 @@ class ks_general_ledger(models.AbstractModel):
                 select = select.replace('debit', 'debit_cash_basis').replace('credit', 'credit_cash_basis').replace('balance', 'balance_cash_basis')
         else:
             select = "SELECT \"account_move_line\".id"
+            select = "SELECT \"account.account\".code"
         sql = "%s FROM %s WHERE %s%s"
         if group_by_account:
-            sql +=  "GROUP BY \"account_move_line\".account_id"
+            sql +=  "GROUP BY \"account.account\".code"
         else:
             sql += " GROUP BY \"account_move_line\".id"
             sql += " ORDER BY MAX(\"account_move_line\".date),\"account_move_line\".id"
