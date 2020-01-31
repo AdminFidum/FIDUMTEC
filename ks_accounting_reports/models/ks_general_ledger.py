@@ -10,6 +10,8 @@ from odoo.tools import float_is_zero
 from odoo.exceptions import UserError
 import pandas as pd
 import numpy as np
+import logging
+_logger = logging.getLogger(__name__)
 
 
 class ks_general_ledger(models.AbstractModel):
@@ -238,7 +240,15 @@ class ks_general_ledger(models.AbstractModel):
                 aml_ids = aml_ids[offset:stop]
 
             accounts[account]['lines'] = self.env['account.move.line'].browse(aml_ids)
+            i = 0
 
+        global CodigoCuentas
+        CodigoCuentas = []
+        for accounts in accounts:
+            account = self.env['account.account'].browse(code)
+            CodigoCuentas.insert(i,account.code)
+            i= i+1
+            _logger.info('RIGOGO - ' + CodigoCuentas[i])
         # For each company, if the unaffected earnings account wasn't in the selection yet: add it manually
         user_currency = self.env.user.company_id.currency_id
         for cid in context.get('company_ids', []):
