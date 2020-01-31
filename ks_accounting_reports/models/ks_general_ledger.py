@@ -216,7 +216,7 @@ class ks_general_ledger(models.AbstractModel):
             if account.user_type_id == unaffected_earnings_type and account.company_id not in unaff_earnings_treated_companies:
                 #add the benefit/loss of previous fiscal year to unaffected earnings accounts
                 unaffected_earnings_results = unaffected_earnings_per_company[account.company_id]
-                for field in [grouped_accounts.code,'balance', 'debit', 'credit']:
+                for field in ['balance', 'debit', 'credit']:
                     accounts[account]['initial_bal'][field] += unaffected_earnings_results[field]
                     accounts[account][field] += unaffected_earnings_results[field]
                 unaff_earnings_treated_companies.add(account.company_id)
@@ -240,6 +240,7 @@ class ks_general_ledger(models.AbstractModel):
                 aml_ids = aml_ids[offset:stop]
 
             accounts[account]['lines'] = self.env['account.move.line'].browse(aml_ids)
+            accounts[account]['code'] = self.env['account.account'].browse(code)
         
         _logger.info('RIGOGO - ' + str(accounts))
         """i = 0
