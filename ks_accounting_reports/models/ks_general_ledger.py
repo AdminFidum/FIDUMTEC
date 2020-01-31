@@ -241,7 +241,7 @@ class ks_general_ledger(models.AbstractModel):
 
             accounts[account]['lines'] = self.env['account.move.line'].browse(aml_ids)
         
-        _logger.info('RIGOGO - ' + accounts)
+        _logger.info('RIGOGO - ' + str(accounts))
         """i = 0
         global CodigoCuentas
         CodigoCuentas = []
