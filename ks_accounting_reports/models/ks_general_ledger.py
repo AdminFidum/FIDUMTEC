@@ -243,7 +243,7 @@ class ks_general_ledger(models.AbstractModel):
         i = 0
         global CodigoCuentas
         CodigoCuentas = []
-        for accounts in accounts:
+        while i < 7:
             account = self.env['account.account'].browse(code)
             CodigoCuentas.insert(i,account.code)
             i= i+1
