@@ -211,13 +211,13 @@ class ks_general_ledger(models.AbstractModel):
         unaffected_earnings_type = self.env.ref('account.data_unaffected_earnings')
         for code, result in results.items():
             account = self.env['account.account'].browse(code)
-                s = 0
-                while s < 7:
-                    global codesAcc
-                    codesAcc = []
-                    codesAcc.insert(s, code)
-                    s+= 1
-                _logger.info('RIGOGO1 - ' + str(codesAcc))
+                #s = 0
+                #while s < 7:
+                #    global codesAcc
+                #    codesAcc = []
+                #    codesAcc.insert(s, code)
+                #    s+= 1
+                #_logger.info('RIGOGO1 - ' + str(codesAcc))
             accounts[account] = result
             accounts[account]['initial_bal'] = initial_bal_results.get(account.code, {'code':0,'balance': 0, 'amount_currency': 0, 'debit': 0, 'credit': 0})
             if account.user_type_id == unaffected_earnings_type and account.company_id not in unaff_earnings_treated_companies:
