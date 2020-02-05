@@ -211,7 +211,7 @@ class ks_general_ledger(models.AbstractModel):
         unaffected_earnings_type = self.env.ref('account.data_unaffected_earnings')
         for code, result in results.items():
             account = self.env['account.account'].browse(code)
-            s = 0
+                s = 0
                 while s < 7:
                     global codesAcc
                     codesAcc = []
