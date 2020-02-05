@@ -242,7 +242,7 @@ class ks_general_ledger(models.AbstractModel):
             accounts[account]['lines'] = self.env['account.move.line'].browse(aml_ids)
             accounts[account]['code'] = self.env['account.account'].browse(code)
 
-        _logger.info('RIGOGO - ' + accounts[account]['lines'])
+        _logger.info('RIGOGO - ' + str(accounts[account]['lines']))
         # For each company, if the unaffected earnings account wasn't in the selection yet: add it manually
         user_currency = self.env.user.company_id.currency_id
         for cid in context.get('company_ids', []):
