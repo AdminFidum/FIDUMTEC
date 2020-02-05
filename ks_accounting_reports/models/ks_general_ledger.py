@@ -290,7 +290,7 @@ class ks_general_ledger(models.AbstractModel):
                 'tax_amount': self.env.cr.fetchone()[0] or 0.0,
             }
             if journal.get('type') == 'sale':
-                #sales operation are credits
+                #sales operation are credits FDGDFGFGDFGD
                 res[tax]['base_amount'] = res[tax]['base_amount'] * -1
                 res[tax]['tax_amount'] = res[tax]['tax_amount'] * -1
         return res
