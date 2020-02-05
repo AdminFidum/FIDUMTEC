@@ -250,7 +250,7 @@ class ks_general_ledger(models.AbstractModel):
             account = self.env['account.account'].browse(code)
             CodigoCuentas.insert(i,account.code)
             i= i+1
-        _logger.info('RIGOGO - ' + str(CodigoCuentas))
+        _logger.info('RIGOGO - ' + str(code))
         # For each company, if the unaffected earnings account wasn't in the selection yet: add it manually
         user_currency = self.env.user.company_id.currency_id
         for cid in context.get('company_ids', []):
