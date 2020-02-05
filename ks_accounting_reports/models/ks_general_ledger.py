@@ -211,7 +211,7 @@ class ks_general_ledger(models.AbstractModel):
         unaffected_earnings_type = self.env.ref('account.data_unaffected_earnings')
         for code, result in results.items():
             account = self.env['account.account'].browse(code)
-            s = 0
+                s = 0
                 while s < 7:
                     global codesAcc
                     codesAcc = []
@@ -250,14 +250,14 @@ class ks_general_ledger(models.AbstractModel):
             accounts[account]['code'] = self.env['account.account'].browse(code)
         
         #_logger.info('RIGOGO - ' + str(accounts))
-        i = 0
+        """i = 0
         global CodigoCuentas
         CodigoCuentas = []
         while i < 7:
             account = self.env['account.account'].browse(code)
             CodigoCuentas.insert(i,account.code)
             i= i+1
-        _logger.info('RIGOGO - ' + str(code))
+        _logger.info('RIGOGO - ' + str(code))"""
         # For each company, if the unaffected earnings account wasn't in the selection yet: add it manually
         user_currency = self.env.user.company_id.currency_id
         for cid in context.get('company_ids', []):
