@@ -293,8 +293,19 @@ class ks_general_ledger(models.AbstractModel):
                 ks_lines_control.update({display_name: account})
                 ks_lines[account] = grouped_accounts[account]
             _logger.info('WATARU Reports ks_lines_control %s ',ks_lines_control)
+            ks_lines[ks_lines_control[display_name]]["balance"] =  ks_lines[ks_lines_control[display_name]]["balance"]+grouped_accounts[account]["balance"]
+            ks_lines[ks_lines_control[display_name]]["amount_currency"] =  ks_lines[ks_lines_control[display_name]]["amount_currency"]+grouped_accounts[account]["amount_currency"]
+            ks_lines[ks_lines_control[display_name]]["debit"] =  ks_lines[ks_lines_control[display_name]]["debit"]+grouped_accounts[account]["debit"]
+            ks_lines[ks_lines_control[display_name]]["credit"] =  ks_lines[ks_lines_control[display_name]]["credit"]+grouped_accounts[account]["credit"]
             ks_lines[ks_lines_control[display_name]]["lines"] =  ks_lines[ks_lines_control[display_name]]["lines"]+grouped_accounts[account]["lines"]
-            #ks_lines[ks_lines_control[display_name]]["total_lines"] = ks_lines[ks_lines_control[display_name]]["total_lines"]+len(ks_lines[account]["lines"])
+            ks_lines[ks_lines_control[display_name]]["total_lines"] = ks_lines[ks_lines_control[display_name]]["total_lines"]+len(grouped_accounts[account]["lines"])
+            
+            if "initial_bal" in ks_lines[ks_lines_control[display_name]]:
+                ks_lines[ks_lines_control[display_name]]["initial_bal"]["balance"] = ks_lines[ks_lines_control[display_name]]["initial_bal"]["balance"]+grouped_accounts[account]["initial_bal"]["balance"]
+                ks_lines[ks_lines_control[display_name]]["initial_bal"]["amount_currency"] = ks_lines[ks_lines_control[display_name]]["initial_bal"]["amount_currency"]+grouped_accounts[account]["initial_bal"]["amount_currency"]
+                ks_lines[ks_lines_control[display_name]]["initial_bal"]["debit"] = ks_lines[ks_lines_control[display_name]]["initial_bal"]["debit"]+grouped_accounts[account]["initial_bal"]["debit"]
+                ks_lines[ks_lines_control[display_name]]["initial_bal"]["credit"] = ks_lines[ks_lines_control[display_name]]["initial_bal"]["balance"]+grouped_accounts[account]["initial_bal"]["credit"]
+
         return ks_lines
 
     @api.model
