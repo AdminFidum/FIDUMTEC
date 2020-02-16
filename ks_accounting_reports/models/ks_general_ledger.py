@@ -163,7 +163,6 @@ class ks_general_ledger(models.AbstractModel):
         tables, where_clause, where_params = self.env['account.move.line']._query_get()
         line_clause = line_id and ' AND \"account_move_line\".account_id = ' + str(line_id) or ''
         query = sql % (select, tables, where_clause, line_clause)
-        _logger.info('WATARU Reports select %s tables %s ',select,tables)
         self.env.cr.execute(with_sql + query, with_params + where_params)
         results = self.env.cr.fetchall()
         return results
@@ -296,6 +295,7 @@ class ks_general_ledger(models.AbstractModel):
         aml_lines = []
         # Aml go back to the beginning of the user chosen range but the amount on the account line should go back to either the beginning of the fy or the beginning of times depending on the account
         grouped_accounts = self.with_context(date_from_aml=dt_from, date_from=dt_from and company_id.compute_fiscalyear_dates(fields.Date.from_string(dt_from))['date_from'] or None)._group_by_account_id(options, line_id)
+        _logger.info('WATARU Reports grouped_accounts %s ',grouped_accounts)
         sorted_accounts = sorted(grouped_accounts, key=lambda a: a.code)
         unfold_all = context.get('print_mode') and len(options.get('unfolded_lines')) == 0
         sum_debit = sum_credit = sum_balance = 0
