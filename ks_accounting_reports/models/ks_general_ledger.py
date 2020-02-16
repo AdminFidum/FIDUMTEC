@@ -395,7 +395,7 @@ class ks_general_ledger(models.AbstractModel):
                     ks_line_odoorate = ks_line_odoorates.get(line.company_id.currency_id) or 1.0
                     ks_line_rate = 1/ks_line_odoorate
                     progress = progress + line_debit - line_credit
-                    currency = "" if not line.currency_id else self.with_context(no_format=False).format_value(line.amount_currency, currency=line.currency_id) or line.company_id.currency_id.name
+                    currency = line.company_id.currency_id.name if not line.currency_id else self.with_context(no_format=False).format_value(line.amount_currency, currency=line.currency_id)
 
                     name = line.name and line.name or ''
                     if line.ref:
