@@ -31,10 +31,12 @@ class ks_general_ledger(models.AbstractModel):
 
     def _get_columns_name(self, options):
         return [{'name': ''},
+                {'name': _("Company")},
                 {'name': _("Date"), 'class': 'date'},
                 {'name': _("Communication")},
                 {'name': _("Partner")},
                 {'name': _("Currency"), 'class': 'number'},
+                {'name': _("Rate"), 'class': 'number'},
                 {'name': _("Debit"), 'class': 'number'},
                 {'name': _("Credit"), 'class': 'number'},
                 {'name': _("Balance"), 'class': 'number'}]
@@ -389,6 +391,8 @@ class ks_general_ledger(models.AbstractModel):
                     date = amls.env.context.get('date') or fields.Date.today()
                     line_debit = line.company_id.currency_id._convert(line_debit, used_currency, company_id, date)
                     line_credit = line.company_id.currency_id._convert(line_credit, used_currency, company_id, date)
+                    ks_line_odoorate = line.company_id.currency_id._get_rates(company_id, date)
+                    ks_line_rate = 1/ks_line_odoorate
                     progress = progress + line_debit - line_credit
                     currency = "" if not line.currency_id else self.with_context(no_format=False).format_value(line.amount_currency, currency=line.currency_id)
 
@@ -408,14 +412,14 @@ class ks_general_ledger(models.AbstractModel):
                         caret_type = 'account.invoice.in' if line.invoice_id.type in ('in_refund', 'in_invoice') else 'account.invoice.out'
                     elif line.payment_id:
                         caret_type = 'account.payment'
-                    columns = [{'name': v} for v in [format_date(self.env, line.date), name, partner_name, currency,
+                    columns = [{'name': v} for v in [line.company_id,format_date(self.env, line.date), name, partner_name, ks_line_rate, currency,
                                     line_debit != 0 and self.format_value(line_debit) or '',
                                     line_credit != 0 and self.format_value(line_credit) or '',
                                     self.format_value(progress)]]
-                    columns[1]['class'] = 'whitespace_print'
                     columns[2]['class'] = 'whitespace_print'
-                    columns[1]['title'] = name_title
-                    columns[2]['title'] = partner_name_title
+                    columns[3]['class'] = 'whitespace_print'
+                    columns[2]['title'] = name_title
+                    columns[3]['title'] = partner_name_title
                     line_value = {
                         'id': line.id,
                         'caret_options': caret_type,
