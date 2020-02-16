@@ -348,11 +348,11 @@ class ks_general_ledger(models.AbstractModel):
                     'id': 'account_%s' % (account.id,),
                     'name': len(display_name) > 40 and not context.get('print_mode') and display_name[:40]+'...' or display_name,
                     'title_hover': display_name,
-                    'columns': [{'name': v} for v in [amount_currency, self.format_value(debit), self.format_value(credit), self.format_value(balance)]],
+                    'columns': [{'name': v} for v in [amount_currency, "", self.format_value(debit), self.format_value(credit), self.format_value(balance)]],
                     'level': 2,
                     'unfoldable': True,
                     'unfolded': 'account_%s' % (account.id,) in options.get('unfolded_lines') or unfold_all,
-                    'colspan': 4,
+                    'colspan': 5,
                 })
             if 'account_%s' % (account.id,) in options.get('unfolded_lines') or unfold_all:
                 initial_debit = grouped_accounts[account]['initial_bal']['debit']
