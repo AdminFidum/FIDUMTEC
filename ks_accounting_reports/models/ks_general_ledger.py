@@ -454,7 +454,7 @@ class ks_general_ledger(models.AbstractModel):
                         'class': 'o_account_reports_domain_total',
                         'parent_id': 'account_%s' % (account.id,),
                         'name': _('Total '),
-                        'columns': [{'name': v} for v in ['', '', '', amount_currency, self.format_value(debit), self.format_value(credit), self.format_value(balance)]],
+                        'columns': [{'name': v} for v in ['', '', '', '', amount_currency, '', self.format_value(debit), self.format_value(credit), self.format_value(balance)]],
                     })
 
                 lines += domain_lines
@@ -466,7 +466,7 @@ class ks_general_ledger(models.AbstractModel):
                 'name': _('Total'),
                 'class': 'total',
                 'level': 1,
-                'columns': [{'name': v} for v in ['', '', '', '', self.format_value(sum_debit), self.format_value(sum_credit), self.format_value(sum_balance)]],
+                'columns': [{'name': v} for v in ['', '', '', '', '', '', self.format_value(sum_debit), self.format_value(sum_credit), self.format_value(sum_balance)]],
             })
 
         journals = [j for j in options.get('journals') if j.get('selected')]
