@@ -293,8 +293,8 @@ class ks_general_ledger(models.AbstractModel):
                 ks_lines_control.update({display_name: account})
                 ks_lines[account] = grouped_accounts[account]
             _logger.info('WATARU Reports ks_lines_control %s ',ks_lines_control)
-            ks_lines[ks_lines_control[display_name]]["lines"] =  ks_lines[ks_lines_control[display_name]]["lines"]+ks_lines[account]["lines"]
-            ks_lines[ks_lines_control[display_name]]["total_lines"] = ks_lines[ks_lines_control[display_name]]["total_lines"]+len(ks_lines[account]["lines"])
+            ks_lines.update({ks_lines_control[display_name]: {"lines":ks_lines[ks_lines_control[display_name]]["lines"]+ks_lines[account]["lines"]}})
+            #ks_lines[ks_lines_control[display_name]]["total_lines"] = ks_lines[ks_lines_control[display_name]]["total_lines"]+len(ks_lines[account]["lines"])
         return ks_lines
 
     @api.model
