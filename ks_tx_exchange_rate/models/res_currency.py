@@ -15,7 +15,7 @@ class ks_tx_res_currency(models.Model):
         currency_rates = super(ks_tx_res_currency, self)._get_rates(company, date)
         ks_echangerate = self.env.context.get('ks_tx_exchange_rate')
         currency_key = self.env.context.get('currency_id')
-        _logger.info('WATARU currency ks_echangerate %s currency_key %s context %s',ks_echangerate,currency_key,self.env.context)
+        #_logger.info('WATARU currency ks_echangerate %s currency_key %s context %s',ks_echangerate,currency_key,self.env.context)
         if ks_echangerate and currency_key:
             currency_rates[currency_key] = 1.0 / ks_echangerate
 
