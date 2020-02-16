@@ -288,12 +288,14 @@ class ks_general_ledger(models.AbstractModel):
         ks_lines = {}
         for account in grouped_accounts:
             display_name = account.code + " " + account.name
-            if not ks_lines_control[display_name]:
+            try:
+                ks_lines_control[display_name]
+            except NameError:
                 ks_lines_control[display_name] = account
                 ks_lines[account] = grouped_accounts[account]
-            else:
-                ks_lines[ks_lines_control[display_name]]["lines"] =  ks_lines[ks_lines_control[display_name]]["lines"]+ks_lines[account]["lines"]
-                ks_lines[ks_lines_control[display_name]]["total_lines"] = ks_lines[ks_lines_control[display_name]]["total_lines"]+len(ks_lines[account]["lines"])
+            
+            ks_lines[ks_lines_control[display_name]]["lines"] =  ks_lines[ks_lines_control[display_name]]["lines"]+ks_lines[account]["lines"]
+            ks_lines[ks_lines_control[display_name]]["total_lines"] = ks_lines[ks_lines_control[display_name]]["total_lines"]+len(ks_lines[account]["lines"])
         return ks_lines
 
     @api.model
