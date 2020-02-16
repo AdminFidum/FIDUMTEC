@@ -163,7 +163,7 @@ class ks_general_ledger(models.AbstractModel):
         tables, where_clause, where_params = self.env['account.move.line']._query_get()
         line_clause = line_id and ' AND \"account_move_line\".account_id = ' + str(line_id) or ''
         query = sql % (select, tables, where_clause, line_clause)
-        _logger.info('WATARU Reports select %s where_clause %s line_clause %s',select,where_clause,line_clause)
+        _logger.info('WATARU Reports select %s tables %s ',select,tables)
         self.env.cr.execute(with_sql + query, with_params + where_params)
         results = self.env.cr.fetchall()
         return results
