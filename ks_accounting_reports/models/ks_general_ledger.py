@@ -160,7 +160,7 @@ class ks_general_ledger(models.AbstractModel):
         with_sql, with_params = self._get_with_statement(user_types)
         tables, where_clause, where_params = self.env['account.move.line']._query_get()
         line_clause = line_id and ' AND \"account_move_line\".account_id = ' + str(line_id) or ''
-        query = sql % (select, tables, where_clause, line_clause)
+        query = sql % (select, tables, where_clause, line_clause) 
         self.env.cr.execute(with_sql + query, with_params + where_params)
         results = self.env.cr.fetchall()
         return results
