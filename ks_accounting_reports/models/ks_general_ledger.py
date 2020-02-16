@@ -283,6 +283,19 @@ class ks_general_ledger(models.AbstractModel):
                 res[tax]['tax_amount'] = res[tax]['tax_amount'] * -1
         return res
 
+    def ks_group(self,grouped_accounts):
+        ks_lines_control = {}
+        ks_lines = {}
+        for account in grouped_accounts:
+            display_name = account.code + " " + account.name
+            if not ks_lines_control[display_name]:
+                ks_lines_control[display_name] = account
+                ks_lines[account] = grouped_accounts[account]
+            else:
+                ks_lines[ks_lines_control[display_name]]["lines"] =  ks_lines[ks_lines_control[display_name]]["lines"]+ks_lines[account]["lines"]
+                ks_lines[ks_lines_control[display_name]]["total_lines"] = ks_lines[ks_lines_control[display_name]]["total_lines"]+len(ks_lines[account]["lines"])
+        return ks_lines
+
     @api.model
     def _get_lines(self, options, line_id=None):
         offset = int(options.get('lines_offset', 0))
@@ -294,8 +307,8 @@ class ks_general_ledger(models.AbstractModel):
         line_id = line_id and int(line_id.split('_')[1]) or None
         aml_lines = []
         # Aml go back to the beginning of the user chosen range but the amount on the account line should go back to either the beginning of the fy or the beginning of times depending on the account
-        grouped_accounts = self.with_context(date_from_aml=dt_from, date_from=dt_from and company_id.compute_fiscalyear_dates(fields.Date.from_string(dt_from))['date_from'] or None)._group_by_account_id(options, line_id)
-        _logger.info('WATARU Reports grouped_accounts %s ',grouped_accounts)
+        _grouped_accounts = self.with_context(date_from_aml=dt_from, date_from=dt_from and company_id.compute_fiscalyear_dates(fields.Date.from_string(dt_from))['date_from'] or None)._group_by_account_id(options, line_id)
+        grouped_accounts = self.ks_group(_grouped_accounts)
         sorted_accounts = sorted(grouped_accounts, key=lambda a: a.code)
         unfold_all = context.get('print_mode') and len(options.get('unfolded_lines')) == 0
         sum_debit = sum_credit = sum_balance = 0
