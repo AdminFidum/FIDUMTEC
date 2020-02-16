@@ -413,7 +413,7 @@ class ks_general_ledger(models.AbstractModel):
                         caret_type = 'account.invoice.in' if line.invoice_id.type in ('in_refund', 'in_invoice') else 'account.invoice.out'
                     elif line.payment_id:
                         caret_type = 'account.payment'
-                    columns = [{'name': v} for v in [line.company_id,format_date(self.env, line.date), name, partner_name, currency, ks_line_rate,
+                    columns = [{'name': v} for v in [line.company_id.name,format_date(self.env, line.date), name, partner_name, currency, ks_line_rate,
                                     line_debit != 0 and self.format_value(line_debit) or '',
                                     line_credit != 0 and self.format_value(line_credit) or '',
                                     self.format_value(progress)]]
