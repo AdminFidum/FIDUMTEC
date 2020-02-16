@@ -392,7 +392,7 @@ class ks_general_ledger(models.AbstractModel):
                     line_debit = line.company_id.currency_id._convert(line_debit, used_currency, company_id, date)
                     line_credit = line.company_id.currency_id._convert(line_credit, used_currency, company_id, date)
                     ks_line_odoorate = line.company_id.currency_id._get_rates(company_id, date)
-                    ks_line_rate = 1/ks_line_odoorate
+                    ks_line_rate = 1/ks_line_odoorate[line.company_id.currency_id]
                     progress = progress + line_debit - line_credit
                     currency = "" if not line.currency_id else self.with_context(no_format=False).format_value(line.amount_currency, currency=line.currency_id)
 
