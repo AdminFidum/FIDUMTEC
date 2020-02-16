@@ -289,10 +289,8 @@ class ks_general_ledger(models.AbstractModel):
         for account in grouped_accounts:
             display_name = account.code + " " + account.name
             _logger.info('WATARU Reports display_name %s ',display_name)
-            try:
-                ks_lines_control[display_name]
-            except NameError:
-                ks_lines_control[display_name] = account
+            if not display_name in ks_lines_control:
+                ks_lines_control.update({display_name: account})
                 ks_lines[account] = grouped_accounts[account]
             _logger.info('WATARU Reports ks_lines_control %s ',ks_lines_control)
             ks_lines[ks_lines_control[display_name]]["lines"] =  ks_lines[ks_lines_control[display_name]]["lines"]+ks_lines[account]["lines"]
